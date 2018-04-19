@@ -1,2 +1,55 @@
 class VitaminsController < ApplicationController
+  before_action :set_vitamin, only: [:show, :edit, :update, :destroy]
+
+  def index
+    @vitamins = Vitamin.all
+  end
+
+  def new
+    @vitamin = Vitamin.new
+  end
+
+  def create
+    @vitamin = Vitamin.new(vitmain_params)
+    respond_to do |format|
+      if @vitamin.save
+        format.html { redirect_to @vitamin, notice: 'Vitamin was successfully created.' }
+      else
+        format.html { render :new }
+      end
+    end
+  end
+
+  def show
+    @message = params[:message] if params[:message]
+    @message ||= false
+  end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @vitamin.update(vitamin_params)
+        format.html { redirect_to @vitamin, notice: 'Vitamin was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
+  def destroy
+    @vitamin.destroy
+    respond_to do |format|
+      format.html { redirect_to vitamins_url, notice: 'Vitamin was successfully destroyed.' }
+    end
+  end
+
+  private
+  def set_vitamin
+    @vitamin = Vitamin.find(params[:id])
+  end
+
+  def vitmain_params
+    params.require(:vitamin).permit(:name, :capsule_amount)
 end
