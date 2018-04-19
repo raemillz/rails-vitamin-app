@@ -24,18 +24,30 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
       <div class="container">
-        <a class="navbar-brand" <%= link_to "Start Tracking", root_path %> </a>
+        <% if current_user %>
+          <a class="nav-brand" <%= link_to "Hello, #{current_user.name}!", user_path(current_user) %> </a>
+        <% else %>
+          <a class="navbar-brand" <%= link_to "Start Tracking", root_path %> </a>
+        <% end %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <%= link_to "Sign Up", new_user_path, class: "btn btn-primary" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Sign In", signin_path, class: "btn btn-primary" %>
-            </li>
+            <% if current_user %>
+              <li class="nav-item">
+                <%= link_to "Vitamins", vitamins_path, class: "btn btn-primary" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Log Out", signout_path, method: :delete, class: "btn btn-primary" %></li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Sign Up", new_user_path, class: "btn btn-primary" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Sign In", signin_path, class: "btn btn-primary" %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
