@@ -4,7 +4,11 @@
     <h1><%= @vitamin_pack.name %></h1>
     <ul>
       <% @vitamin_pack.vitamins.each do |vitamin| %>
-        <li><%= vitamin.name %> - <%= vitamin.benefit %> - <%= vitamin.capsule_amount %> capsule(s)</li>
+        <li><%= vitamin.name %> -
+          <% vitamin.benefits.each do |benefit| %>
+          <%= benefit.name %> -
+          <% end %>
+          <%= vitamin.capsule_amount %> capsule(s)</li>
       <% end %>
     </ul>
     <p><%= link_to 'Edit Pack', edit_vitamin_pack_path(@vitamin_pack) %></p>

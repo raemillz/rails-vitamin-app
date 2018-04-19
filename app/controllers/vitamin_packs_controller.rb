@@ -62,6 +62,6 @@ class VitaminPacksController < ApplicationController
   private
 
   def vitamin_pack_params
-    params.require(:vitamin_pack).permit(:name, :user_name, :user_id)
+    params.require(:vitamin_pack).permit(:name, :user_name, :user_id, :vitamin_ids => [], vitamins_attributes: [:name])
   end
 end
