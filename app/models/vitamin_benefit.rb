@@ -1,0 +1,2 @@
+class VitaminBenefit < ApplicationRecord
+end

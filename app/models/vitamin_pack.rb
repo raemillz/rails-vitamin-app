@@ -1,0 +1,2 @@
+class VitaminPack < ApplicationRecord
+end

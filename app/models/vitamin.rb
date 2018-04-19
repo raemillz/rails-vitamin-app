@@ -1,0 +1,2 @@
+class Vitamin < ApplicationRecord
+end

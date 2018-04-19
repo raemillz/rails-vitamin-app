@@ -1,0 +1,2 @@
+class UserVitamin < ApplicationRecord
+end
