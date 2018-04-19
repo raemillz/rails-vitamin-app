@@ -6,16 +6,25 @@
   </div>
 <% end %>
 
-<div class="center">
+<div class="container">
 
-  <div class="info">
+  <div class="center">
     <h1><%= @user.name %>'s Vitamin Packs</h1>
-    <ul>
-      <% @user.vitamin_packs.each do |pack| %>
-        <li><%= link_to pack.name, user_vitamin_pack_path(@user, pack) %></li>
-      <% end %>
-    </ul>
+    <section>
+      <div class="info">
+        <ul>
+          <% @user.vitamin_packs.each do |pack| %>
+            <li><%= link_to pack.name, user_vitamin_pack_path(@user, pack) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+<section>
+  <div class="container">
     <p><%= link_to 'Create New Vitamin Pack', new_user_vitamin_pack_path(@user) %></p>
     <p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
   </div>
-</div>
+</section>
