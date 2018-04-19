@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<% if @message %>
+  <div class="center alert">
+    <p><%= @message %></p>
+  </div>
+<% end %>
+
+<div class="center">
+
+  <div class="info">
+    <h1><%= @user.name %>'s Vitamin Packs</h1>
+    <ul>
+      <% @user.vitamin_packs.each do |pack| %>
+        <li><%= link_to pack.name, user_vitamin_pack_path(@user, pack) %></li>
+      <% end %>
+    </ul>
+    <p><%= link_to 'Create New Vitamin Pack', new_user_vitamin_pack_path %></p>
+    <p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
+  </div>
+</div>

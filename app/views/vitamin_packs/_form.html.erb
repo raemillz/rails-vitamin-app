@@ -1,0 +1,8 @@
+<%= form_for @vitamin_pack  do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= user_id_field(@vitamin_pack) %>
+  <br />
+
+  <%= f.submit %>
+<% end %>
