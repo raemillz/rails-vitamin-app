@@ -15,7 +15,7 @@
         <li><%= link_to pack.name, user_vitamin_pack_path(@user, pack) %></li>
       <% end %>
     </ul>
-    <p><%= link_to 'Create New Vitamin Pack', new_user_vitamin_pack_path %></p>
+    <p><%= link_to 'Create New Vitamin Pack', new_user_vitamin_pack_path(@user) %></p>
     <p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
   </div>
 </div>

@@ -1,5 +1,19 @@
 class VitaminPacksController < ApplicationController
 
+  def new
+    @vitamin_pack = VitaminPack.new
+  end
+
+  def create
+    @user = User.find_by(params[:id])
+    @vitamin_pack = @user.vitamin_packs.build(vitamin_pack_params)
+    if @vitamin_pack.save
+      redirect_to @vitamin_pack
+    else
+      redirect_to @user
+    end
+  end
+
   def show
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
@@ -9,23 +23,6 @@ class VitaminPacksController < ApplicationController
       end
     else
       @vitamin_pack = VitaminPack.find(params[:id])
-    end
-  end
-
-  def new
-    if params[:user_id] && !User.exists?(params[:user_id])
-      redirect_to new_user_path, alert: "User not found."
-    else
-      @vitamin_pack = VitaminPack.new(user_id: params[:user_id])
-    end
-  end
-
-  def create
-    @vitamin_pack = VitaminPack.new(vitamin_pack_params)
-    if @vitamin_pack.save
-      redirect_to @vitamin_pack
-    else
-      render :new
     end
   end
 

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :benefits
   resources :vitamins
   resources :users do
-    resources :vitamin_packs, only: [:index, :show, :new, :edit]
+    resources :vitamin_packs, only: [:show, :new, :edit]
   end
+  resources :vitamin_packs
 end
