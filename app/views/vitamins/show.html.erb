@@ -6,8 +6,9 @@
     <p><strong>Name:</strong> <%= @vitamin.name %></p>
     <p><strong>Total Number of Users:</strong> <%= @vitamin.users.count %></p>
     <p><strong>Capsule Amount:</strong> <%= @vitamin.capsule_amount %></p>
-    <p><strong>Benefits:</strong> <% @vitamin.benefits.each do |benefit| %></p>
-      <ol><%= benefit.name %></ol>
+    <p><strong>Benefits:</strong></p>
+    <% @vitamin.benefits.each do |benefit| %>
+      <li><%= benefit.name %></li>
       <% end %>
     </br>
     <%= link_to 'Back', vitamins_path, class: "btn btn-primary btn-light" %></p>

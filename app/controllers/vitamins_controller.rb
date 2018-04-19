@@ -10,7 +10,7 @@ class VitaminsController < ApplicationController
   end
 
   def create
-    @vitamin = Vitamin.new(vitmain_params)
+    @vitamin = Vitamin.new(vitamin_params)
     respond_to do |format|
       if @vitamin.save
         format.html { redirect_to @vitamin, notice: 'Vitamin was successfully created.' }
@@ -50,7 +50,7 @@ class VitaminsController < ApplicationController
     @vitamin = Vitamin.find(params[:id])
   end
 
-  def vitmain_params
+  def vitamin_params
     params.require(:vitamin).permit(:name, :capsule_amount)
   end
 end

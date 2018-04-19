@@ -3,22 +3,26 @@
 <table class="table">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
       <td><strong>Name</strong></td>
-      <td><strong>Benefits</strong></td>
       <td><strong>Capsule Amount</strong></td>
+      <td><strong>Benefits</strong></td>
+      <td><strong>Edit</strong></td>
     </tr>
     <% @vitamins.each do |vitamin| %>
       <tr>
 
         <td><%= vitamin.name %></td>
-        <td><%= vitamin.benefits %></td>
         <td><%= vitamin.capsule_amount %></td>
+        <%vitamin.benefits.each do |benefit| %>
+          <td><li><%= benefit.name %></li></td>
+        <% end %>
+        <td><%= link_to "Edit", edit_vitamin_path(vitamin) %></td>
       </tr>
     <% end %>
   </tbody>
