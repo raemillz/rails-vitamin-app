@@ -1,6 +1,19 @@
 <%= form_for @vitamin_pack  do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+  </div>
+
+  <div class="field">
+    <%= f.collection_check_boxes :vitamin_ids, Vitamin.all, :id, :name %><br>
+  </div>
+
+  <div class="field">
+    <%= f.fields_for :vitamins do |vitamin_builder| %>
+      <%= vitamin_builder.label :name, Vitamin %>
+      <%= vitamin_builder.text_field :name %>
+    <% end %>
+  </div>
   <br />
 
   <%= f.submit %>

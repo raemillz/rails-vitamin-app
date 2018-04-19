@@ -52,4 +52,5 @@ class VitaminsController < ApplicationController
 
   def vitmain_params
     params.require(:vitamin).permit(:name, :capsule_amount)
+  end
 end

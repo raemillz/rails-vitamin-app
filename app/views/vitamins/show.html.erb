@@ -8,6 +8,8 @@
     <p><strong>Capsule Amount:</strong> <%= @vitamin.capsule_amount %></p>
     <p><strong>Benefits:</strong> <% @vitamin.benefits.each do |benefit| %></p>
       <ol><%= benefit.name %></ol>
+      <% end %>
+    </br>
     <%= link_to 'Back', vitamins_path, class: "btn btn-primary btn-light" %></p>
   </div>
 </div>
