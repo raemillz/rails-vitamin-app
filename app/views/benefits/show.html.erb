@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<div class="center">
+
+  <div class="info">
+    <p><strong>Benefit:</strong> <%= @benefit.name %></p>
+    <p><strong>Total Number of Associated Vitamins:</strong> <%= @benefit.vitamins.count %></p>
+    <p><strong>Associated Vitamins:</strong> <% @benefit.vitamins.each do |vitamin| %></p>
+      <ol><%= vitamin.name %></ol>
+      <% end %>
+    </br>
+    <%= link_to 'Back', benefits_path, class: "btn btn-primary btn-light" %></p>
+  </div>
+</div>
