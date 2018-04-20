@@ -7,6 +7,7 @@ class Vitamin < ApplicationRecord
   has_many :vitamin_packs, through: :vitamin_pack_vitamins
 
   validates_presence_of :name
+  validates :name, uniqueness: true
 
   accepts_nested_attributes_for :benefits, reject_if: proc { |attributes| attributes['name'].blank? }
 

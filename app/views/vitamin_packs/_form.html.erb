@@ -19,16 +19,16 @@
     <%= f.text_field :name %><br>
   </div>
 
+</br>
+
   <div class="field">
+    Does your pack contain any of these vitamins?
     <%= f.fields_for :vitamins do |vitamin_builder| %>
       <%= vitamin_builder.label :name, Vitamin %>
       <%= vitamin_builder.text_field :name %></br>
     <% end %>
   </br>
-
-    <div class="field">
-      <%= f.collection_check_boxes :vitamin_ids, Vitamin.all, :id, :name %><br>
-    </div>
+    <%= f.collection_check_boxes :vitamin_ids, Vitamin.all, :id, :name %><br>
   </div>
   <br />
 
