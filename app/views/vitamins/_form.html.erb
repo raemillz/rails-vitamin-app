@@ -1,11 +1,10 @@
 <%= form_for(@vitamin) do |f| %>
   <% if @vitamin.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="text-center">
       <h2><%= pluralize(@vitamin.errors.count, "error") %> prohibited this vitamin from being saved:</h2>
-
       <ul>
       <% @vitamin.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <ul><%= msg %></ul>
       <% end %>
       </ul>
     </div>
@@ -23,7 +22,7 @@
 </br>
 
   <div class="field">
-    Would you like to add or create and additional benefit?
+    Would you like to add or create and additional benefit? </br>
     <%= f.fields_for :benefits do |benefit_builder| %>
       <%= benefit_builder.label :name, Benefit %>
       <%= benefit_builder.text_field :name %>

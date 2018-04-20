@@ -1,16 +1,36 @@
 <%= render 'header' %>
 
-<div class="center">
+<section>
+  <div class="container text-center">
+    <div class="info">
+      <table class="table">
+        <thead>
+          <tr>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
 
-  <div class="info">
-    <p><strong>Name:</strong> <%= @vitamin.name %></p>
-    <p><strong>Total Number of Users:</strong> <%= @vitamin.users.count %></p>
-    <p><strong>Capsule Amount:</strong> <%= @vitamin.capsule_amount %></p>
-    <p><strong>Benefits:</strong></p>
-    <% @vitamin.benefits.each do |benefit| %>
-      <li><%= benefit.name %></li>
-      <% end %>
-    </br>
-    <%= link_to 'Back', vitamins_path, class: "btn btn-primary btn-light" %></p>
+        <tbody>
+          <tr>
+            <td><strong>Name</strong></td>
+            <td><strong>Capsule Amount</strong></td>
+            <td><strong>Benefits</strong></td>
+            <td><strong>Edit</strong></td>
+          </tr>
+            <tr>
+              <td><%= @vitamin.name %></td>
+              <td><%= @vitamin.capsule_amount %></td>
+              <% if @vitamin.benefits.any? %>
+                <% @vitamin.benefits.each do |benefit| %>
+                  <td><%= benefit.name %></td>
+                <% end %>
+              <% else %>
+                <td> No benefits listed yet! </td>
+              <% end %>
+              <td><%= link_to "Edit", edit_vitamin_path(@vitamin) %></td>
+            </tr>
+        </tbody>
+      </table>
+      <br>
+    </div>
   </div>
-</div>

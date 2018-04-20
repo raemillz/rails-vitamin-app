@@ -1,18 +1,4 @@
-<header class="masthead text-center text-white">
-  <p id="notice"><%= notice %></p>
-
-  <% if @message %>
-    <div class="center alert">
-      <p><%= @message %></p>
-    </div>
-  <% end %>
-  <div class="masthead-content">
-    <div class="container">
-      <h1 class="masthead-heading mb-0"><%= @user.name %>'s Vitamin Packs</h1>
-    </div>
-  </div>
-
-</header>
+<%= render 'header' %>
 
 </br>
 
@@ -22,6 +8,7 @@
       <section>
         <div class="info">
           <strong>
+            <h3> Your Packs: </h3>
             <% @user.vitamin_packs.each do |pack| %>
               <h3><span><%= link_to pack.name, user_vitamin_pack_path(@user, pack) %></span></h3>
             <% end %>
@@ -31,8 +18,10 @@
     </div>
   </div>
 
-  <div class="container text-center ">
-    <sub><%= link_to 'Create New Vitamin Pack', new_user_vitamin_pack_path(@user) %></sub> </br>
+  <div class="container text-center fixed-bottom">
+    <sub><%= link_to 'Create New Vitamin', new_vitamin_path %> &#149;</sub> 
+    <sub><%= link_to 'Create New Benefit', new_benefit_path %> &#149;</sub>
+    <sub><%= link_to 'Create New Vitamin Pack', new_user_vitamin_pack_path(@user) %> &#149;</sub>
     <sub><%= link_to 'Edit Profile', edit_user_path(@user) %></sub></br>
   </div>
 </section>

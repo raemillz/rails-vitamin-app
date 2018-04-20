@@ -1,0 +1,23 @@
+<header class="masthead text-center text-white">
+  <p id="notice"><%= notice %></p>
+
+  <% if @message %>
+    <div class="center alert">
+      <p><%= @message %></p>
+    </div>
+  <% end %>
+  <div class="masthead-content">
+    <div class="container">
+      <% if @benefits %>
+        <h1 class="masthead-heading mb-0"> Benefit Index </h1>
+      <% elsif @benefit.name %>
+        <h1 class="masthead-heading mb-0"><%= @benefit.name %></h1>
+      <% else %>
+        <h1 class="masthead-heading mb-0">Create New Benefit</h1>
+      <% end %>
+    </div>
+  </div>
+
+</header>
+
+</br>
