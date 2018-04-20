@@ -1,17 +1,61 @@
-<div class="center">
+<header class="masthead text-center text-white">
+  <p id="notice"><%= notice %></p>
 
-  <div class="info">
-    <h1><%= @vitamin_pack.name %></h1>
-    <ul>
-      <% @vitamin_pack.vitamins.each do |vitamin| %>
-        <li><%= vitamin.name %> -
-          <% vitamin.benefits.each do |benefit| %>
-          <%= benefit.name %> -
-          <% end %>
-          <%= vitamin.capsule_amount %> capsule(s)</li>
-      <% end %>
-    </ul>
-    <p><%= link_to 'Edit Pack', edit_vitamin_pack_path(@vitamin_pack) %></p>
-    <p><%= link_to "All Packs", user_path %></p>
+  <% if @message %>
+    <div class="center alert">
+      <p><%= @message %></p>
+    </div>
+  <% end %>
+  <div class="masthead-content">
+    <div class="container">
+      <h1 class="masthead-heading mb-0"><%= @vitamin_pack.name %> Pack</h1>
+    </div>
   </div>
-</div>
+
+</header>
+
+</br>
+
+<section>
+  <div class="contailer text-center">
+    <div class="info">
+      <table class="table">
+        <thead>
+          <tr>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Vitamin</strong></td>
+            <td><strong>Capsule Amount</strong></td>
+            <td><strong>Benefits</strong></td>
+            <td><strong>Edit</strong></td>
+          </tr>
+          <% @vitamins.each do |vitamin| %>
+            <tr>
+
+              <td><%= vitamin.name %></td>
+              <td><%= vitamin.capsule_amount %></td>
+              <% if vitamin.benefits.any? %>
+                <%vitamin.benefits.each do |benefit| %>
+                  <td><%= benefit.name %></td>
+                <% end %>
+              <% else %>
+                <td> No benefits listed yet! </td>
+              <% end %>
+              <td><%= link_to "Edit", edit_vitamin_path(vitamin) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+    </div>
+  </div>
+
+  <div class="container text-center ">
+    <sub><%= link_to 'Edit Pack', edit_vitamin_pack_path(@vitamin_pack) %></sub> </br>
+    <sub><%= link_to "All Packs", user_path %></sub></br>
+  </div>
+</section>
