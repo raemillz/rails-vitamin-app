@@ -5,6 +5,18 @@
     <title>Rails Vitamin App</title>
 
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <style>
+      .footer {
+         position: fixed;
+         left: 0;
+         bottom: 0;
+         width: 100%;
+         background-color: red;
+         color: white;
+         text-align: center;
+      }
+      </style>
 
     <!-- Bootstrap core CSS -->
     <link href="https://blackrockdigital.github.io/startbootstrap-one-page-wonder/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -59,11 +71,11 @@
   </body>
 
   <!-- Footer -->
-  <footer class="py-5 bg-black fixed-bottom">
+  <div class="footer py-5 bg-black">
     <div class="container">
       <p class="m-0 text-center text-white small">Copyright &copy; rachelannemiller.com 2018</p>
     </div>
     <!-- /.container -->
-  </footer>
+  </div>
 
 </html>
