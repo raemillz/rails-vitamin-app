@@ -8,9 +8,13 @@
       <section>
         <div class="info">
           <strong>
-            <h3> Your Packs: </h3>
-            <% @user.vitamin_packs.each do |pack| %>
-              <h3><span><%= link_to pack.name, user_vitamin_pack_path(@user, pack) %></span></h3>
+            <% if @user.vitamin_packs.any? %>
+              <h3> Your Packs: </h3>
+              <% @user.vitamin_packs.each do |pack| %>
+                <h3><span><%= link_to pack.name, user_vitamin_pack_path(@user, pack) %></span></h3>
+              <% end %>
+            <% else %>
+              <h3><span>You don't have any vitamin packs yet! Create one <%= link_to "here", new_user_vitamin_pack_path(@user) %>.</span></h3>
             <% end %>
           </strong>
         </div>
@@ -19,7 +23,7 @@
   </div>
 
   <div class="container text-center fixed-bottom">
-    <sub><%= link_to 'Create New Vitamin', new_vitamin_path %> &#149;</sub> 
+    <sub><%= link_to 'Create New Vitamin', new_vitamin_path %> &#149;</sub>
     <sub><%= link_to 'Create New Benefit', new_benefit_path %> &#149;</sub>
     <sub><%= link_to 'Create New Vitamin Pack', new_user_vitamin_pack_path(@user) %> &#149;</sub>
     <sub><%= link_to 'Edit Profile', edit_user_path(@user) %></sub></br>

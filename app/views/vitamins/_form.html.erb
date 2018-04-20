@@ -12,7 +12,7 @@
 
 </br>
 
-  <div class="field">
+  <div class="field text-center">
     <%= f.label :name %><br>
     <%= f.text_field :name, class: "form-control" %></br>
     <%= f.label :capsule_amount, "How many capsules per serving?" %><br>
@@ -21,18 +21,15 @@
 
 </br>
 
-  <div class="field">
-    Would you like to add or create and additional benefit? </br>
-    <%= f.fields_for :benefits do |benefit_builder| %>
-      <%= benefit_builder.label :name, Benefit %>
-      <%= benefit_builder.text_field :name %>
-    <% end %>
+  <div class="field text-center">
+    Would you like to add a benefit?
   </br>
     <%= f.collection_check_boxes :benefit_ids, Benefit.all, :id, :name %>
   </br>
+  Not the benefit you were looking for? Create a new benefit <%= link_to "here", new_benefit_path %>.
   </div>
 
-  <div class="actions">
+  <div class="actions text-center">
     <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
