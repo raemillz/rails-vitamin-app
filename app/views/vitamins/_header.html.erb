@@ -8,7 +8,13 @@
   <% end %>
   <div class="masthead-content">
     <div class="container">
-      <h1 class="masthead-heading mb-0">Vitamin <%= @vitamin.name %></h1>
+      <% if @vitamins %>
+        <h1 class="masthead-heading mb-0">Vitamin Index</h1>
+      <% elsif @vitamin.name %>
+        <h1 class="masthead-heading mb-0">Vitamin <%= @vitamin.name %></h1>
+      <% else %>
+        <h1 class="masthead-heading mb-0">Create a New Vitamin</h1>
+      <% end %>
     </div>
   </div>
 

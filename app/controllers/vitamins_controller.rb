@@ -40,9 +40,7 @@ class VitaminsController < ApplicationController
 
   def destroy
     @vitamin.destroy
-    respond_to do |format|
-      format.html { redirect_to vitamins_url, notice: 'Vitamin was successfully destroyed.' }
-    end
+    redirect_to vitamins_path
   end
 
   private
