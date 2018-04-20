@@ -8,7 +8,11 @@
   <% end %>
   <div class="masthead-content">
     <div class="container">
+      <% if @vitamin_pack.name %>
       <h1 class="masthead-heading mb-0"><%= @vitamin_pack.name %> Pack</h1>
+      <% else %>
+      <h1 class="masthead-heading mb-0">Create a Vitamin Pack</h1>
+      <% end %>
     </div>
   </div>
 
