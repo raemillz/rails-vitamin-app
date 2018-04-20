@@ -56,7 +56,7 @@ class VitaminPacksController < ApplicationController
     @vitamin_pack = VitaminPack.find(params[:id])
     @vitamin_pack.destroy
     flash[:notice] = "Vitamin Pack deleted."
-    redirect_to user_path
+    redirect_to user_path(current_user)
   end
 
   private
