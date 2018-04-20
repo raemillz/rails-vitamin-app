@@ -1,20 +1,37 @@
 <%= form_for @vitamin_pack  do |f| %>
+  <% if @vitamin_pack.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vitamin_pack.errors.count, "error") %> prohibited this vitamin pack from being saved:</h2>
+
+      <ul>
+      <% @vitamin_pack.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+
+      </ul>
+    </div>
+  <% end %>
+
+</br>
+
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %><br>
   </div>
 
   <div class="field">
-    <%= f.collection_check_boxes :vitamin_ids, Vitamin.all, :id, :name %><br>
-  </div>
-
-  <div class="field">
     <%= f.fields_for :vitamins do |vitamin_builder| %>
       <%= vitamin_builder.label :name, Vitamin %>
-      <%= vitamin_builder.text_field :name %>
+      <%= vitamin_builder.text_field :name %></br>
     <% end %>
+  </br>
+
+    <div class="field">
+      <%= f.collection_check_boxes :vitamin_ids, Vitamin.all, :id, :name %><br>
+    </div>
   </div>
   <br />
+
 
   <%= f.submit %>
 <% end %>
