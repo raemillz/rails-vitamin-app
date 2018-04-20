@@ -6,23 +6,24 @@
       <p><%= @message %></p>
     </div>
   <% end %>
-  <div class="bg-circle-1 bg-circle"></div>
-  <div class="bg-circle-2 bg-circle"></div>
-  <div class="bg-circle-3 bg-circle"></div>
-  <div class="bg-circle-4 bg-circle"></div>
+  <div class="masthead-content">
+    <div class="container">
+      <h1 class="masthead-heading mb-0"><%= @user.name %>'s Vitamin Packs</h1>
+    </div>
+  </div>
+
 </header>
 
+</br>
+
 <section>
-
   <div class="container text-center">
-
     <div class="center">
-      <h1><%= @user.name %>'s Vitamin Packs</h1>
       <section>
         <div class="info">
           <strong>
             <% @user.vitamin_packs.each do |pack| %>
-              <h3><li><%= link_to pack.name, user_vitamin_pack_path(@user, pack) %></li></h3>
+              <h3><span><%= link_to pack.name, user_vitamin_pack_path(@user, pack) %></span></h3>
             <% end %>
           </strong>
         </div>
@@ -30,9 +31,8 @@
     </div>
   </div>
 
-  <div class="container text-center">
+  <div class="container text-center ">
     <sub><%= link_to 'Create New Vitamin Pack', new_user_vitamin_pack_path(@user) %></sub> </br>
-    <sub><%= link_to 'Edit Profile', edit_user_path(@user) %></sub>
+    <sub><%= link_to 'Edit Profile', edit_user_path(@user) %></sub></br>
   </div>
-  
 </section>
