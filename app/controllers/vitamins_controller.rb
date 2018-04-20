@@ -51,6 +51,6 @@ class VitaminsController < ApplicationController
   end
 
   def vitamin_params
-    params.require(:vitamin).permit(:name, :capsule_amount, :benefit_ids => [], benefits_attributes: [:name])
+    params.require(:vitamin).permit(:name, :capsule_amount, :benefit_ids => [], :benefits_attributes => [:name])
   end
 end
