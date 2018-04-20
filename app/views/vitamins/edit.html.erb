@@ -1,6 +1,15 @@
-<h1>Editing <%= @vitamin.name %></h1>
+<%= render 'header' %>
 
-<%= render 'form' %>
+</br>
+<section>
+  <div class="contailer text-center">
+    <div class="info">
+      <%= render 'form' %>
+    </div>
+  </div>
 
-<%= link_to 'Show', @vitamin %> |
-<%= link_to 'Back', vitamins_path %>
+  <div class="container text-center ">
+    <sub><%= link_to 'Show', @vitamin %> | <%= link_to 'Back', vitamins_path %></sub>
+  </div>
+</section>
+</br>
