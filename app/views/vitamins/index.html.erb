@@ -1,46 +1,47 @@
 <%= render 'header' %>
-<h1>All Current Vitamins</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <tr>
-      <td><strong>Name</strong></td>
-      <td><strong>Capsule Amount</strong></td>
-      <td><strong>Benefits</strong></td>
-      <td><strong>Action</strong></td>
-    </tr>
-    <% @vitamins.each do |vitamin| %>
-      <tr>
+<section>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th colspan="4" class="text-center"><h3>All Current Vitamins</h3></th>
+        </tr>
+      </thead>
 
-        <td><%= vitamin.name %></td>
-        <td><%= vitamin.capsule_amount %></td>
-        <% if vitamin.benefits.any? %>
-          <%vitamin.benefits.each do |benefit| %>
-            <td><%= benefit.name %></td>
-          <% end %>
-        <% else %>
-          <td> No benefits listed yet! </td>
+      <tbody>
+        <tr>
+          <td><strong>Name</strong></td>
+          <td><strong>Capsule Amount</strong></td>
+          <td><strong>Benefits</strong></td>
+          <td><strong>Action</strong></td>
+        </tr>
+        <% @vitamins.each do |vitamin| %>
+          <tr>
+
+            <td><%= vitamin.name %></td>
+            <td><%= vitamin.capsule_amount %></td>
+            <% if vitamin.benefits.any? %>
+              <%vitamin.benefits.each do |benefit| %>
+                <td><%= benefit.name %></td>
+              <% end %>
+            <% else %>
+              <td> No benefits listed yet! </td>
+            <% end %>
+            <td>
+              <%= link_to "View", vitamin %> |
+              <%= link_to "Edit", edit_vitamin_path(vitamin) %>
+              <%= button_to "Delete", vitamin, method: :delete, data: {confirm: "Are you sure?"} %>
+            </td>
+          </tr>
         <% end %>
-        <td>
-          <%= link_to "View", vitamin %> |
-          <%= link_to "Edit", edit_vitamin_path(vitamin) %>
-          <%= button_to "Delete", vitamin, method: :delete, data: {confirm: "Are you sure?"} %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
+      </tbody>
+    </table>
+  </div>
 
-<% if @user %>
-  <p>
-    <%= link_to "Back to profile", user_path(@user), {:class => "btn btn-primary"} %>
-  </p>
-<% else %>
-  <p><%= link_to 'New Vitamin', new_vitamin_path %></p>
-<% end %>
+</br>
+
+  <div class="text-center">
+    <p><%= link_to 'Add New Vitamin', new_vitamin_path %></p>
+  </div>
+</section>
