@@ -27,8 +27,8 @@
           <td> No benefits listed yet! </td>
         <% end %>
         <td>
-          <%= button_to "View", vitamin %> |
-          <%= button_to "Edit", edit_vitamin_path(vitamin) %> |
+          <%= link_to "View", vitamin %> |
+          <%= link_to "Edit", edit_vitamin_path(vitamin) %>
           <%= button_to "Delete", vitamin, method: :delete, data: {confirm: "Are you sure?"} %>
         </td>
       </tr>
