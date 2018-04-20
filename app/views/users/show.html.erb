@@ -12,6 +12,7 @@
               <h3> Your Packs: </h3>
               <% @user.vitamin_packs.each do |pack| %>
                 <h3><span><%= link_to pack.name, user_vitamin_pack_path(@user, pack) %></span></h3>
+                <span><%= button_to "Delete", pack, method: :delete, data: {confirm: "Are you sure?"} %></span>
               <% end %>
             <% else %>
               <h3><span>You don't have any vitamin packs yet! Create one <%= link_to "here", new_user_vitamin_pack_path(@user) %>.</span></h3>
