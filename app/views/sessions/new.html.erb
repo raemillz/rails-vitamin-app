@@ -1,16 +1,36 @@
-<%= form_for @user, :url => url_for(:controller => 'sessions', :action => 'create') do |f| %>
-
-  <div class="form-group">
-    <%= f.label :name, "Enter your name" %><br>
-    <%= f.text_field :name, class: "form-control" %>
+<header class="masthead text-center text-white">
+  <div class="masthead-content">
+    <div class="container">
+      <h1 class="masthead-heading mb-0">Vitamin Tracking App</h1>
+      <h2 class="masthead-subheading mb-0">So You Don't Miss a Thing</h2>
+    </div>
   </div>
+  <div class="bg-circle-1 bg-circle"></div>
+  <div class="bg-circle-2 bg-circle"></div>
+  <div class="bg-circle-3 bg-circle"></div>
+  <div class="bg-circle-4 bg-circle"></div>
+</header>
 
-  <div class="form-group">
-    <%= f.label :password, "Enter your password" %><br>
-    <%= f.password_field :password, class: "form-control" %>
-  </div>
+<section>
+  <div class="container">
+      <%= form_for @user, :url => url_for(:controller => 'sessions', :action => 'create') do |f| %>
+        <div class="form-group text-center">
+          <strong>
+            <%= f.label :name, "Enter your name" %><br>
+            <%= f.text_field :name, class: "form-control" %>
+          </strong>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "Sign In", class: "btn btn-primary" %>
+        <div class="form-group text-center">
+          <strong>
+            <%= f.label :password, "Enter your password" %><br>
+            <%= f.password_field :password, class: "form-control" %>
+          </strong>
+        </div>
+
+        <div class="actions text-center">
+          <%= f.submit "Sign In", class: "btn btn-primary" %>
+        </div>
+      <% end %>
   </div>
-<% end %>
+</section>
