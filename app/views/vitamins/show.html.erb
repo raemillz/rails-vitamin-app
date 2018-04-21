@@ -21,8 +21,8 @@
               <td><%= @vitamin.name %></td>
               <td><%= @vitamin.capsule_amount %></td>
               <% if @vitamin.benefits.any? %>
-                <% @vitamin.benefits.each do |benefit| %>
-                  <td><%= benefit.name %></td>
+                <td><details><% @vitamin.benefits.each do |benefit| %>
+                  <li><%= benefit.name %></li></details</td>
                 <% end %>
               <% else %>
                 <td> No benefits listed yet! </td>
