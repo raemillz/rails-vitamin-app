@@ -5,7 +5,7 @@ class VitaminPacksController < ApplicationController
   end
 
   def create
-    @user = User.find_by(params[:id])
+    @user = current_user
     @vitamin_pack = @user.vitamin_packs.build(vitamin_pack_params)
     if @vitamin_pack.save
       redirect_to @vitamin_pack

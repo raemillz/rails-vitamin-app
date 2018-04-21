@@ -1,17 +1,19 @@
 <%= render 'header' %>
-<h1>Editing <%= @vitamin_pack.name %></h1>
-<%= render partial: "form" %>
-
-</br>
 <section>
-  <div class="contailer text-center">
-    <div class="info">
-      <%= render 'form' %>
+  <div class="container text-center">
+    <div class="center">
+      <section>
+        <div class="info ">
+          <h1>Editing <%= @vitamin_pack.name %> Pack</h1>
+          <%= render "form" %>
+        </div>
+      </section>
+      </br>
+      <section>
+        <div class="container text-center ">
+          <sub><%= link_to 'Home', @user %></sub>
+        </div>
+      </section>
     </div>
   </div>
-
-  <div class="container text-center ">
-    <sub><%= link_to 'Home', @user %></sub>
-  </div>
 </section>
-</br>
