@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is a tool for users to create and track their vitamin regimen.
 
-Things you may want to cover:
+# Getting Started
 
-* Ruby version
+To get a copy of the project up and running on your local machine for development and testing purposes:
 
-* System dependencies
+Fork this repo and clone it to your computer. Run 'bundle install'. Then migrate and seed the database with 'rake db:migrate' and 'rake db:seed'.
+Start the server with 'rails s' or 'rails server'
 
-* Configuration
+# Built with
+Rails, Omniauth, SQLite
 
-* Database creation
+# Contributing
+Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
 
-* Database initialization
+# License
 
-* How to run the test suite
+This project is licensed under the [MIT License](http://opensource.org/licenses/MIT). - see the LICENSE.md file for details
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# rails-vitamin-app
