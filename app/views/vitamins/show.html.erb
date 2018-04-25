@@ -1,36 +1,48 @@
 <%= render 'header' %>
 
-<section>
-  <div class="container text-center">
-    <div class="info">
-      <table class="table">
-        <thead>
-          <tr>
-            <th colspan="4"></th>
-          </tr>
-        </thead>
 
-        <tbody>
-          <tr>
-            <td><strong>Name</strong></td>
-            <td><strong>Capsule Amount</strong></td>
-            <td><strong>Benefits</strong></td>
-            <td><strong>Edit</strong></td>
-          </tr>
-            <tr>
-              <td><%= @vitamin.name %></td>
-              <td><%= @vitamin.capsule_amount %></td>
-              <% if @vitamin.benefits.any? %>
-                <td class="text-center"><details><% @vitamin.benefits.each do |benefit| %>
-                  <li><%= benefit.name %></li></details</td>
-                <% end %>
-              <% else %>
-                <td> No benefits listed yet! </td>
-              <% end %>
-              <td><%= link_to "Edit", edit_vitamin_path(@vitamin) %></td>
-            </tr>
-        </tbody>
-      </table>
-      <br>
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="p-5">
+            <img class="img-fluid rounded-circle" src="https://images.ctfassets.net/t9x0u6p47op0/2xDaqmAoQ80YKWkq8MAmEO/aeed734d69fcf0b34681638fc02e6f56/ic_research_strong.gif?w=190&h=190" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <h3 class="display-4"><%= @vitamin.capsule_amount %> capsule per day.</h3>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="p-5">
+            <img class="img-fluid rounded-circle" src="https://images.ctfassets.net/t9x0u6p47op0/2xDaqmAoQ80YKWkq8MAmEO/aeed734d69fcf0b34681638fc02e6f56/ic_research_strong.gif?w=190&h=190" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <h3 class="display-4">Great for your:</h3>
+            <% @vitamin.benefits.each do |benefit| %>
+              <h2><li> <%= benefit.name %> </li></h2>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</br>
+</br>
+
+<section>
+  <div class="container text-center fixed-bottom">
+    <sub><%= link_to 'Edit Vitamin', edit_vitamin_path(@vitamin) %></sub>
   </div>
+</section>
