@@ -16,7 +16,7 @@
           <td><strong>Benefits</strong></td>
           <td><strong>Action</strong></td>
         </tr>
-        <% @vitamins.each do |vitamin| %>
+        <% @vitamins.order_alphabetically.each do |vitamin| %>
           <tr>
 
             <td><%= vitamin.name %></td>

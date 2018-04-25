@@ -11,9 +11,8 @@ class Vitamin < ApplicationRecord
 
   accepts_nested_attributes_for :benefits, reject_if: proc { |attributes| attributes['name'].blank? }
 
-  def self.most_popular
-    Vitamin.select("vitamins.*, COUNT(users.id) AS u_count").joins(:users).group("vitamins.id").order("u_count DESC").limit(1)
+  def self.order_alphabetically
+    Vitamin.order('vitamins.name ASC')
   end
-
 
 end
