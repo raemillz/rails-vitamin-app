@@ -5,12 +5,13 @@ class VitaminPacksController < ApplicationController
   end
 
   def create
-    #@user = current_user
     @vitamin_pack = @user.vitamin_packs.build(vitamin_pack_params)
-    if @vitamin_pack.save
-      redirect_to @vitamin_pack
-    else
-      redirect_to @user
+    respond_to do |format|
+      if @vitamin_pack.save
+        format.html {redirect_to @vitamin_pack, notice: 'Vitamin Pack was successfully created.'}
+      else
+        format.html { render :new}
+      end
     end
   end
 

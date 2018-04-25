@@ -1,6 +1,6 @@
 <%= form_for @vitamin_pack  do |f| %>
   <% if @vitamin_pack.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="text-center">
       <h2><%= pluralize(@vitamin_pack.errors.count, "error") %> prohibited this vitamin pack from being saved:</h2>
 
       <ul>

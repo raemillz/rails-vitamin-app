@@ -1,6 +1,6 @@
       <%= form_for @user do |f| %>
         <% if @user.errors.any? %>
-          <div id="error_explanation">
+          <div id="error_explanation" class="text-center">
             <h2>
               <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
             </h2>
@@ -35,7 +35,7 @@
           </strong>
           <br>
         </div>
-        
+
         <div class="actions text-center">
           <%= f.submit class: "btn btn-primary" %>
         </div>
