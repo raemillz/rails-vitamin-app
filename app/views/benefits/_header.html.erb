@@ -10,7 +10,7 @@
     <div class="container">
       <% if @benefits %>
         <h1 class="masthead-heading mb-0"> Benefit Index </h1>
-      <% elsif @benefit.name %>
+      <% elsif @benefit.id %>
         <h1 class="masthead-heading mb-0"><%= @benefit.name %></h1>
         <h3> <%= link_to "Edit", edit_benefit_path(@benefit) %></h3>
       <% else %>

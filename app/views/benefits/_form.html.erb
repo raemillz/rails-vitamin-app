@@ -1,5 +1,17 @@
 <%= form_for(@benefit) do |f| %>
+  <% if @benefit.errors.any? %>
+    <div id="error_explanation">
+      <h2 class="text-center">
+        <%= pluralize(@benefit.errors.count, "error") %> prohibited this user from being saved:
+      </h2>
 
+      <ul>
+      <% @benefit.errors.full_messages.each do |message| %>
+        <ul class="text-center"><%= message %></ul>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="form-group text-center">
     <%= f.label :name %><br>
     <%= f.text_field :name, class: "form-control" %></div>

@@ -15,8 +15,9 @@ class VitaminPacksController < ApplicationController
   end
 
   def show
+    @message = params[:message] if params[:message]
+    @message ||= false
     if params[:user_id]
-      #@user = User.find_by(id: params[:user_id])
       @vitamin_pack = @user.vitamin_packs.find_by(id: params[:id])
       if @vitamin_pack.nil?
         redirect_to user_vitamin_packs_path(@user), alert: "Vitamin pack not found"
