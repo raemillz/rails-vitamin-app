@@ -1,5 +1,6 @@
 class BenefitsController < ApplicationController
   before_action :set_benefit, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
 
   def index
     @benefits = Benefit.all
@@ -52,5 +53,9 @@ class BenefitsController < ApplicationController
 
   def benefit_params
     params.require(:benefit).permit(:name)
+  end
+
+  def set_user
+    @user = current_user
   end
 end

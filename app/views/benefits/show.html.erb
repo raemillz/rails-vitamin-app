@@ -1,41 +1,18 @@
 <%= render 'header' %>
-<div class="center">
 
 <section>
-  <div class="center">
-    <table class="table">
-      <thead>
-        <tr>
-          <th colspan="2" class="text-center"></th>
-        </tr>
-      </thead>
+  <div class="text-center">
+    <h1>Associated Vitamins:</h1>
+      <% @benefit.vitamins.each do |vitamin| %>
+        <h2><li> <%= link_to vitamin.name, vitamin_path(vitamin) %> </li></h2>
+      <% end %>
+  </div>
+</section>
 
-      <tbody>
-        <tr>
-          <td class="text-center"><strong>Number of Associated Vitamins</strong></td>
-          <td class="text-center"><strong>Associated Vitamins</strong></td>
-        </tr>
-          <tr>
-            <td class="text-center"><%= @benefit.vitamins.count %></td>
-            <% if @benefit.vitamins.any? %>
-              <td class="text-center"><details><% @benefit.vitamins.each do |vitamin| %>
-              <li><%= vitamin.name %></li></td>
-              <% end %>
-            <% else %>
-            <td class="text-center"> No vitamins are currently associated with this benefit.</td>
-          </tr>
-          <% end %>
-      </tbody>
-    </table>
+  </br>
+  </br>
 
-    <br>
-
-    <div class="container text-center fixed-bottom">
-      <sub><%= link_to 'New Benefit', new_benefit_path %> &#149;</sub>
-      <sub><%= link_to 'New Vitamin', new_vitamin_path %> &#149;</sub>
-      <sub><%= link_to 'View All Vitamins', vitamins_path %> &#149;</sub>
-      <sub><%= link_to 'View All Benefits', benefits_path %></sub>
-    </div>
+<%= render 'layouts/footer' %>
 
   </div>
 </section>

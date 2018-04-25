@@ -16,11 +16,8 @@
         </tr>
         <% @benefits.each do |benefit| %>
           <tr>
-
             <td class="text-center"><%= benefit.name %></td>
-            <td class="text-center"><details><% benefit.vitamins.each do |vitamin| %>
-              <li><%= vitamin.name %></li></details></td>
-            <% end %>
+            <td class="text-center"><%= link_to "View Details", benefit_path(benefit) %></td>
         <% end %>
       </tr>
       </tbody>
@@ -28,10 +25,6 @@
 
     <br>
 
-    <div class="container text-center fixed-bottom">
-      <sub><%= link_to 'New Benefit', new_benefit_path %> &#149;</sub>
-      <sub><%= link_to 'View All Vitamins', vitamins_path %></sub>
-    </div>
-
   </div>
 </section>
+ <%= render 'layouts/footer' %>
