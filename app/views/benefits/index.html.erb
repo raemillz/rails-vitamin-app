@@ -18,11 +18,11 @@
           <tr>
 
             <td class="text-center"><%= benefit.name %></td>
-            <% benefit.vitamins.each do |vitamin| %>
-            <td class="text-center"><%= vitamin.name %></td>
-          </tr>
-          <% end %>
+            <td class="text-center"><details><% benefit.vitamins.each do |vitamin| %>
+              <li><%= vitamin.name %></li></details></td>
+            <% end %>
         <% end %>
+      </tr>
       </tbody>
     </table>
 

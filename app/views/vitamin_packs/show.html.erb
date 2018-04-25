@@ -15,7 +15,6 @@
             <td><strong>Vitamin</strong></td>
             <td><strong>Capsule Amount</strong></td>
             <td><strong>Benefits</strong></td>
-            <td><strong>Edit</strong></td>
           </tr>
           <% @vitamin_pack.vitamins.each do |vitamin| %>
             <tr>
@@ -23,13 +22,10 @@
               <td><%= vitamin.name %></td>
               <td><%= vitamin.capsule_amount %></td>
               <% if vitamin.benefits.any? %>
-                <%vitamin.benefits.each do |benefit| %>
-                  <td><%= benefit.name %></td>
-                <% end %>
+                <td><%= link_to "View Benefits", vitamin_path(vitamin) %></td>
               <% else %>
                 <td> No benefits listed yet! </td>
               <% end %>
-              <td><%= link_to "Edit", edit_vitamin_path(vitamin) %></td>
             </tr>
           <% end %>
         </tbody>
