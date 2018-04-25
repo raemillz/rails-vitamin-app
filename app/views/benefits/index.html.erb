@@ -5,19 +5,17 @@
     <table class="table">
       <thead>
         <tr>
-          <th colspan="2" class="text-center"><h3>All Currently Listed Benefits</h3></th>
+          <th colspan="1" class="text-center"><h3>All Currently Listed Benefits</h3></th>
         </tr>
       </thead>
 
       <tbody>
         <tr>
           <td class="text-center"><strong>Benefit</strong></td>
-          <td class="text-center"><strong>Associated Vitamins</strong></td>
         </tr>
         <% @benefits.each do |benefit| %>
           <tr>
-            <td class="text-center"><%= benefit.name %></td>
-            <td class="text-center"><%= link_to "View Details", benefit_path(benefit) %></td>
+            <td class="text-center"><%= link_to benefit.name, benefit_path(benefit) %></td>
         <% end %>
       </tr>
       </tbody>
