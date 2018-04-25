@@ -3,6 +3,16 @@
     <div class="container">
       <h1 class="masthead-heading mb-0">Vitamin Tracking App</h1>
       <h2 class="masthead-subheading mb-0">So You Don't Miss a Thing</h2>
+      <a class="btn btn-primary btn-xl rounded-pill mt-5">
+      <% if session[:user_id] %>
+        <h1><%= @user.name %></h1>
+        <h2>Email: <%= @user.email %></h2>
+        <h2>Facebook UID: <%= @user.uid %></h2>
+        <img src="<%= @user.image %>">
+      <% else %>
+        <%= link_to('Log in with Facebook!', '/auth/facebook') %>
+      <% end %>
+    </a>
     </div>
     <p id="notice"><%= notice %></p>
   </div>
