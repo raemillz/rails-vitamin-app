@@ -13,7 +13,7 @@
         <tr>
           <td class="text-center"><strong>Benefit</strong></td>
         </tr>
-        <% @benefits.each do |benefit| %>
+        <% @benefits.order_alphabetically.each do |benefit| %>
           <tr>
             <td class="text-center"><%= link_to benefit.name, benefit_path(benefit) %></td>
         <% end %>

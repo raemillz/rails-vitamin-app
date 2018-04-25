@@ -4,4 +4,8 @@ class Benefit < ApplicationRecord
 
   validates_presence_of :name
   validates :name, uniqueness: true
+
+  def self.order_alphabetically
+    Benefit.order('benefits.name ASC')
+  end
 end
