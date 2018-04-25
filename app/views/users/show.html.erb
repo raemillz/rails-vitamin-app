@@ -22,11 +22,6 @@
       </section>
     </div>
   </div>
-
-  <div class="container text-center fixed-bottom">
-    <sub><%= link_to 'Create New Vitamin', new_vitamin_path %> &#149;</sub>
-    <sub><%= link_to 'Create New Benefit', new_benefit_path %> &#149;</sub>
-    <sub><%= link_to 'Create New Vitamin Pack', new_user_vitamin_pack_path(@user) %> &#149;</sub>
-    <sub><%= link_to 'Edit Profile', edit_user_path(@user) %></sub></br>
-  </div>
 </section>
+
+<%= render 'layouts/footer' %>

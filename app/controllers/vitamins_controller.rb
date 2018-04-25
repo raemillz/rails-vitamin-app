@@ -1,5 +1,6 @@
 class VitaminsController < ApplicationController
   before_action :set_vitamin, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
 
   def index
     @vitamins = Vitamin.all
@@ -50,5 +51,9 @@ class VitaminsController < ApplicationController
 
   def vitamin_params
     params.require(:vitamin).permit(:name, :capsule_amount, :benefit_ids => [], benefits_attributes: [:name])
+  end
+
+  def set_user
+    @user = current_user
   end
 end
