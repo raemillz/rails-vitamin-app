@@ -15,43 +15,52 @@
 </br>
 
   <div class="field text-center">
-    <%= f.label :name %>
+    <strong><%= f.label :name %></strong>
     <%= f.text_field :name %><br>
   </div>
 
 </br>
 
   <div class="field text-center">
-    Does your pack contain any of these vitamins? </br>
+    <strong>Does your pack contain any of these vitamins?</strong></br>
     <% if @vitamin_pack.vitamins.any? %>
       (Un-check the vitamins you no longer would like in your pack.)
     <% end %>
     </br>
     <%= f.collection_check_boxes :vitamin_ids, Vitamin.all, :id, :name %><br>
-    Don't see what you're looking for? Create a new vitamin:
   </div>
 
-  </br>
-
   <div class="field text-center">
+    <strong>Don't see what you're looking for? Create a new vitamin:</strong>
     <%= f.fields_for :vitamins do |vitamin| %>
       <div class="vitamin_fields">
         <div class="field">
           <%= vitamin.label :name, "Vitamin" %>
           <%= vitamin.text_field :name %>
         </div>
-      </div>
+
+      </br>
 
         <div class="field text-center">
-          <%= f.fields_for :benefits do |benefit| %>
-            <div class="benefit_fields">
-              <div class="field">
-                <%= benefit.label :name, "Benefit" %>
-                <%= benefit.text_field :name %>
+          <strong>Would you like to add a benefit?</strong>
+          </br>
+          <div class="field">
+            <%= vitamin.collection_check_boxes :benefit_ids, Benefit.all, :id, :name %>
+          </div>
+          <strong>Not the benefit you were looking for? Create a new benefit:</strong>
+          <div class="field text-center">
+            <%= vitamin.fields_for :benefits do |benefit| %>
+              <div class="benefit_fields">
+                <div class="field">
+                  <%= benefit.label :name, "Benefit" %>
+                  <%= benefit.text_field :name %>
+                </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
+
+      </div>
 
     <% end %>
   </div>

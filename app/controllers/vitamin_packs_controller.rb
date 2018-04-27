@@ -2,7 +2,7 @@ class VitaminPacksController < ApplicationController
   before_action :set_user
   def new
     @vitamin_pack = VitaminPack.new
-    @vitamin_pack.vitamins.build
+    @vitamin_pack.vitamins.build.benefits.build
   end
 
   def create
@@ -39,7 +39,7 @@ class VitaminPacksController < ApplicationController
       end
     else
       @vitamin_pack = VitaminPack.find(params[:id])
-      @vitamin_pack.vitamins.build
+      @vitamin_pack.vitamins.build.benefits.build
     end
   end
 
@@ -65,7 +65,7 @@ class VitaminPacksController < ApplicationController
   private
 
   def vitamin_pack_params
-    params.require(:vitamin_pack).permit(:name, :user_name, :user_id, :vitamin_ids => [], vitamins_attributes: [:id, :name])
+    params.require(:vitamin_pack).permit(:name, :user_name, :user_id, :vitamin_ids => [], vitamins_attributes: [:id, :name, :benefit_ids => [], benefits_attributes: [:id, :name]])
   end
 
   def set_user

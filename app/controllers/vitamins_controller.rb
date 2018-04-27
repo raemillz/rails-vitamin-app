@@ -8,6 +8,7 @@ class VitaminsController < ApplicationController
 
   def new
     @vitamin = Vitamin.new
+    @vitamin.benefits.build
   end
 
   def create
@@ -27,6 +28,7 @@ class VitaminsController < ApplicationController
   end
 
   def edit
+    @vitamin.benefits.build
   end
 
   def update
@@ -50,7 +52,7 @@ class VitaminsController < ApplicationController
   end
 
   def vitamin_params
-    params.require(:vitamin).permit(:name, :capsule_amount, :benefit_ids => [], benefits_attributes: [:name])
+    params.require(:vitamin).permit(:name, :capsule_amount, :benefit_ids => [], benefits_attributes: [:name, :id])
   end
 
   def set_user

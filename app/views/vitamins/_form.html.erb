@@ -23,10 +23,22 @@
 
   <div class="field text-center">
     Would you like to add a benefit?
-  </br>
-    <%= f.collection_check_boxes :benefit_ids, Benefit.all, :id, :name %>
-  </br>
-  Not the benefit you were looking for? Create a new benefit <%= link_to "here", new_benefit_path %>.
+    </br>
+    <div class="field">
+      <%= f.collection_check_boxes :benefit_ids, Benefit.all, :id, :name %>
+    </div>
+    </br>
+    Not the benefit you were looking for? Create a new benefit:
+    <div class="field text-center">
+      <%= f.fields_for :benefits do |benefit| %>
+        <div class="benefit_fields">
+          <div class="field">
+            <%= benefit.label :name, "Benefit" %>
+            <%= benefit.text_field :name %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 
   <div class="actions text-center">
