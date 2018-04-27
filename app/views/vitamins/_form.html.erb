@@ -30,7 +30,7 @@
     </br>
     Not the benefit you were looking for? Create a new benefit:
     <div class="field text-center">
-      <%= f.fields_for :benefits do |benefit| %>
+      <%= f.fields_for :benefits, (@vitamin.benefits - Benefit.all) do |benefit| %>
         <div class="benefit_fields">
           <div class="field">
             <%= benefit.label :name, "Benefit" %>
