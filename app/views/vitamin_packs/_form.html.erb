@@ -32,11 +32,15 @@
 
   <div class="field text-center">
     <strong>Don't see what you're looking for? Create a new vitamin:</strong>
-    <%= f.fields_for :vitamins do |vitamin| %>
+    <%= f.fields_for :vitamins, (@vitamin_pack.vitamins - Vitamin.all) do |vitamin| %>
       <div class="vitamin_fields">
         <div class="field">
           <%= vitamin.label :name, "Vitamin" %>
           <%= vitamin.text_field :name %>
+        </div>
+        <div class="field">
+          <%= vitamin.label :capsule_amount, "Dosage" %>
+          <%= vitamin.text_field :capsule_amount %>
         </div>
 
       </br>
