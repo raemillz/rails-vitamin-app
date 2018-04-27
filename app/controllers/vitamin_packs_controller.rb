@@ -2,6 +2,7 @@ class VitaminPacksController < ApplicationController
   before_action :set_user
   def new
     @vitamin_pack = VitaminPack.new
+    @vitamin_pack.vitamins.build
   end
 
   def create
@@ -30,7 +31,6 @@ class VitaminPacksController < ApplicationController
 
   def edit
     if params[:user_id]
-      #@user = User.find_by(id: params[:user_id])
       if @user.nil?
         redirect_to new_user_path, alert: "User not found."
       else
@@ -39,6 +39,7 @@ class VitaminPacksController < ApplicationController
       end
     else
       @vitamin_pack = VitaminPack.find(params[:id])
+      @vitamin_pack.vitamins.build
     end
   end
 
@@ -64,7 +65,7 @@ class VitaminPacksController < ApplicationController
   private
 
   def vitamin_pack_params
-    params.require(:vitamin_pack).permit(:name, :user_name, :user_id, :vitamin_ids => [], vitamins_attributes: [:name])
+    params.require(:vitamin_pack).permit(:name, :user_name, :user_id, :vitamin_ids => [], vitamins_attributes: [:id, :name])
   end
 
   def set_user

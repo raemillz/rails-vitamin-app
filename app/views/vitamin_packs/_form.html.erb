@@ -26,11 +26,38 @@
     <% if @vitamin_pack.vitamins.any? %>
       (Un-check the vitamins you no longer would like in your pack.)
     <% end %>
-  </br>
+    </br>
     <%= f.collection_check_boxes :vitamin_ids, Vitamin.all, :id, :name %><br>
-    Don't see what you're looking for? Create a new vitamin <%= link_to "here.", new_vitamin_path %>
+    Don't see what you're looking for? Create a new vitamin:
   </div>
-</br>
+
+  </br>
+
+  <div class="field text-center">
+    <%= f.fields_for :vitamins do |vitamin| %>
+      <div class="vitamin_fields">
+        <div class="field">
+          <%= vitamin.label :name, "Vitamin" %>
+          <%= vitamin.text_field :name %>
+        </div>
+      </div>
+
+        <div class="field text-center">
+          <%= f.fields_for :benefits do |benefit| %>
+            <div class="benefit_fields">
+              <div class="field">
+                <%= benefit.label :name, "Benefit" %>
+                <%= benefit.text_field :name %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+    <% end %>
+  </div>
+
+  </br>
+
   <div class="actions text-center">
     <%= f.submit %>
   </div>
