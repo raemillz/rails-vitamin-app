@@ -15,4 +15,8 @@ class Vitamin < ApplicationRecord
     Vitamin.order('vitamins.name ASC')
   end
 
+  def self.most_popular
+    (vitamin_pack_vitamins.where([]))
+  end
+
 end

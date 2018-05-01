@@ -1,5 +1,6 @@
 class VitaminPacksController < ApplicationController
   before_action :set_user
+  
   def new
     @vitamin_pack = VitaminPack.new
     @vitamin_pack.vitamins.build.benefits.build
