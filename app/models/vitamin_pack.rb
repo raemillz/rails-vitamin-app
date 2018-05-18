@@ -1,7 +1,7 @@
 class VitaminPack < ApplicationRecord
   belongs_to :user
   has_many :vitamin_pack_vitamins
-  has_many :vitamins, through: :vitamin_pack_vitamins
+  has_many :vitamins, through: :vitamin_pack_vitamins, dependent: :destroy
   has_many :benefits, through: :vitamins
 
   validates_presence_of :name

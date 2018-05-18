@@ -16,7 +16,12 @@ class Vitamin < ApplicationRecord
   end
 
   def self.most_popular
-    (vitamin_pack_vitamins.where([]))
+    @pop_id = Vitamin.select(Vitamin.arel_table[Arel.star]).joins(
+                Vitamin.arel_table.join(VitaminPackVitamin.arel_table).on(
+                  VitaminPackVitamin.arel_table[:vitamin_id].eq(Vitamin.arel_table[:id])
+                ).join_sources
+              ).order(VitaminPackVitamin.arel_table[:vitamin_id].count).reverse_order.group(VitaminPackVitamin.arel_table[:vitamin_id]).pluck(:id).last
+    Vitamin.find(@pop_id)
   end
 
 end

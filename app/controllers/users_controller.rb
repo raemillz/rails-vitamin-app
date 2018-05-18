@@ -1,23 +1,23 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :require_logged_in, except: [:new, :create]
+  before_action :authenticate_user!, except: [:new, :create]
   before_action :redirect_if_logged_in, only: [:new, :create]
 
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        session[:user_id] = @user.id
-        format.html { redirect_to user_path(@user), notice: "Welcome to the vitamin tracker!" }
-      else
-        format.html { render :new }
-      end
-    end
-  end
+  # def new
+  #   @user = User.new
+  # end
+  #
+  # def create
+  #   @user = User.new(user_params)
+  #   respond_to do |format|
+  #     if @user.save
+  #       session[:user_id] = @user.id
+  #       format.html { redirect_to user_path(@user), notice: "Welcome to the vitamin tracker!" }
+  #     else
+  #       format.html { render :new }
+  #     end
+  #   end
+  # end
 
   def show
     @message = params[:message] if params[:message]
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :password)
+    params.require(:user).permit(:name, :password, :email)
   end
 
 end
