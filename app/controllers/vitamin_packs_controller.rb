@@ -17,6 +17,10 @@ class VitaminPacksController < ApplicationController
       end
     end
   end
+  
+  def index
+    @vitamin_packs = @user.vitamin_packs
+  end
 
   def show
     @message = params[:message] if params[:message]
@@ -71,6 +75,6 @@ class VitaminPacksController < ApplicationController
   end
 
   def set_user
-    @user = current_user
+    @user = current_user #@user = User.find(params[user_id])
   end
 end

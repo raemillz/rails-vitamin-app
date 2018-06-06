@@ -1,6 +1,7 @@
 class VitaminsController < ApplicationController
   before_action :set_vitamin, only: [:show, :edit, :update, :destroy]
   before_action :set_user
+  #skip_before_action :set_vitamin, :only => [:most_popular]
 
   def index
     @vitamins = Vitamin.all
@@ -20,6 +21,12 @@ class VitaminsController < ApplicationController
         format.html { render :new }
       end
     end
+  end
+
+  def most_popular
+    @message = params[:message] if params[:message]
+    @message ||= false
+    render 'vitamins/most_popular'
   end
 
   def show
@@ -48,7 +55,11 @@ class VitaminsController < ApplicationController
 
   private
   def set_vitamin
-    @vitamin = Vitamin.find(params[:id])
+    if params[:id] != "popular"
+      @vitamin = Vitamin.find(params[:id])
+    else
+      @vitamin = Vitamin.most_popular
+    end
   end
 
   def vitamin_params
