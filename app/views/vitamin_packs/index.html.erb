@@ -1,8 +1,7 @@
 <ol>
   <% @vitamin_packs.each do |pack| %>
-    <li><%= pack.name %>
-    <% pack.vitamins.each do |vitamin| %>
-      <ul><%= vitamin.name %></ul>
-    <% end %>
+    <h5>
+      <%= link_to pack.name, user_vitamin_pack_path(@user, pack) %>
+    </h5>
   <% end %>
 </ol>

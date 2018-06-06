@@ -22,6 +22,7 @@ class VitaminPacksController < ApplicationController
     @vitamin_packs = @user.vitamin_packs
     respond_to do |format|
       format.html {render 'index.html', :layout => false}
+      format.js {render 'index.js', :layout => false}
     end
   end
 
@@ -35,6 +36,7 @@ class VitaminPacksController < ApplicationController
       end
     else
       @vitamin_pack = VitaminPack.find(params[:id])
+      render json: @vitamin_pack, status: 200
     end
   end
 

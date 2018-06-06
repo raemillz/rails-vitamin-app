@@ -10,11 +10,10 @@
           <strong>
             <% if @user.vitamin_packs.any? %>
 
-            <p>
-              <%= link_to "Load Vitamin Packs", user_vitamin_packs_path(@user), :class => "load_packs" %>
-            </p>
-
-            <div class="packs">
+            <div class="center">
+              <h3><span><%= link_to "Load Vitamin Packs", user_vitamin_packs_path(@user), :class => "load_packs" %></span></h3>
+              <div class="packs">
+              </div>
             </div>
 
               <!-- <h3> Your Packs: </h3>
