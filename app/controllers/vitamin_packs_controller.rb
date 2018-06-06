@@ -11,9 +11,10 @@ class VitaminPacksController < ApplicationController
     @vitamin_pack = @user.vitamin_packs.build(vitamin_pack_params)
     respond_to do |format|
       if @vitamin_pack.save
-        format.html {redirect_to @vitamin_pack, notice: 'Vitamin Pack was successfully created.'}
+        format.html {redirect_to @vitamin_pack, notice: 'Vitamin pack was successfully created.'}
       else
-        format.html { render :new}
+        flash[:alert] = "Your vitamin pack could not be saved"
+        format.html {render :new}
       end
     end
   end
@@ -23,12 +24,16 @@ class VitaminPacksController < ApplicationController
     respond_to do |format|
       format.html {render 'index.html', :layout => false}
       format.js {render 'index.js', :layout => false}
+      # format.html { render :index }
+      # format.json { render json: @vitamin_packs}
     end
   end
 
   def show
     @message = params[:message] if params[:message]
     @message ||= false
+    packs = current_user.vitamin_packs.order('vitamin_packs.id ASC')
+    @next_pack = packs.where('packs.id > ?', @vitamin_pack.id).first
     if params[:user_id]
       @vitamin_pack = @user.vitamin_packs.find_by(id: params[:id])
       if @vitamin_pack.nil?
@@ -36,7 +41,8 @@ class VitaminPacksController < ApplicationController
       end
     else
       @vitamin_pack = VitaminPack.find(params[:id])
-      render json: @vitamin_pack, status: 200
+      format.html { render :show }
+      format.json { render json: @vitamin_pack}
     end
   end
 

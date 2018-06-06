@@ -13,6 +13,7 @@
       <% elsif @vitamin_pack.id %>
       <h1 class="masthead-heading mb-0"><%= @vitamin_pack.name %> Pack</h1>
       <h2><%= link_to "Edit Pack", edit_vitamin_pack_path %></h2>
+      <span><%= button_to "Delete", @vitamin_pack, method: :delete, data: {confirm: "Are you sure?"} %></span>
       <% else %>
       <h1 class="masthead-heading mb-0">Create a New Vitamin Pack</h1>
       <% end %>
