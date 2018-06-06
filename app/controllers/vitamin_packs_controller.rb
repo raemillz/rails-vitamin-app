@@ -20,9 +20,9 @@ class VitaminPacksController < ApplicationController
 
   def index
     @vitamin_packs = @user.vitamin_packs
-    # respond_to do |format|
-    #   format.html {render 'index.html', :layout => false}
-    # end
+    respond_to do |format|
+      format.html {render 'index.html', :layout => false}
+    end
   end
 
   def show
