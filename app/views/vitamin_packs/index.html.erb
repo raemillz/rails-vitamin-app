@@ -1,0 +1,8 @@
+<ol>
+  <% @vitamin_packs.each do |pack| %>
+    <li><%= pack.name %>
+    <% pack.vitamins.each do |vitamin| %>
+      <ul><%= vitamin.name %></ul>
+    <% end %>
+  <% end %>
+</ol>

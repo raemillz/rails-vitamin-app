@@ -8,7 +8,9 @@
   <% end %>
   <div class="masthead-content">
     <div class="container">
-      <% if @vitamin_pack.id %>
+      <% if @vitamin_packs %>
+      <h1 class="masthead-heading mb-0"><%= @user.name %>'s Vitamin Packs</h2>
+      <% elsif @vitamin_pack.id %>
       <h1 class="masthead-heading mb-0"><%= @vitamin_pack.name %> Pack</h1>
       <h2><%= link_to "Edit Pack", edit_vitamin_pack_path %></h2>
       <% else %>
