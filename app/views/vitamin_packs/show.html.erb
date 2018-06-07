@@ -35,4 +35,11 @@
   </div>
 </section>
 
+<div class="text-center">
+  <%if @next_pack%>
+    <a href="/vitamin_packs/<%=@next_pack.id%>" id="nextPack" class='btn btn-primary btn-mini'> Next Vitamin Pack</a>
+  <%end%>
+</div>
+
+
 <%= render 'layouts/footer' %>

@@ -32,15 +32,16 @@ class VitaminPacksController < ApplicationController
   def show
     @message = params[:message] if params[:message]
     @message ||= false
-    packs = current_user.vitamin_packs.order('vitamin_packs.id ASC')
-    @next_pack = packs.where('packs.id > ?', @vitamin_pack.id).first
-    if params[:user_id]
+    # if params[:user_id]
       @vitamin_pack = @user.vitamin_packs.find_by(id: params[:id])
-      if @vitamin_pack.nil?
-        redirect_to user_vitamin_packs_path(@user), alert: "Vitamin pack not found"
-      end
-    else
-      @vitamin_pack = VitaminPack.find(params[:id])
+      @packs = current_user.vitamin_packs.order('vitamin_packs.id ASC')
+      @next_pack = @packs.where('vitamin_packs.id > ?', @vitamin_pack.id).first
+      # if @vitamin_pack.nil?
+      #   redirect_to user_vitamin_packs_path(@user), alert: "Vitamin pack not found"
+      # end
+    # else
+    #   @vitamin_pack = VitaminPack.find(params[:id])
+    respond_to do |format|
       format.html { render :show }
       format.json { render json: @vitamin_pack}
     end
