@@ -16,7 +16,6 @@
         <%if @next_pack%>
           <a href="/users/<%=@user.id%>/vitamin_packs/<%=@next_pack.id%>" id="nextPack" class='btn btn-primary btn-mini'> Next Vitamin Pack</a>
         <%end%>
-      <span><%= button_to "Delete", user_vitamin_pack_path, method: :delete, data: {confirm: "Are you sure?"} %></span>
       <% else %>
       <h1 class="masthead-heading mb-0">Create a New Vitamin Pack</h1>
       <% end %>

@@ -21,12 +21,12 @@ class VitaminPacksController < ApplicationController
 
   def index
     @vitamin_packs = @user.vitamin_packs
-    respond_to do |format|
-      format.html {render 'index.html', :layout => false}
-      format.js {render 'index.js', :layout => false}
+    # respond_to do |format|
+    #   format.html {render 'index.html', :layout => false}
+      # format.js {render 'index.js', :layout => false}
       # format.html { render :index }
       # format.json { render json: @vitamin_packs}
-    end
+    # end
   end
 
   def show
