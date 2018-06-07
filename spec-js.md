@@ -5,8 +5,11 @@ Specs:
  -Include a show resource rendered using jQuery and an Active Model Serialization JSON backend.
  -Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
  -Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
- -Use your Rails API and a form to create a resource and render the response without a page refresh. [X]--> New vitamin form on vitamin index page.
- -Translate JSON responses into js model objects.[X]--> New vitamin form on vitamin index page.
+  [X]--> User has_many VitaminPacks and they appended to User show page once link is clicked.
+ -Use your Rails API and a form to create a resource and render the response without a page refresh.
+  [X]--> New vitamin form on vitamin index page.
+ -Translate JSON responses into js model objects.
+  [X]--> Object from vitamin serializer rendered from vitamin form.
  -At least one of the js model objects must have at least one method added by your code to the prototype.
 Confirm
 
