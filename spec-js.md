@@ -17,3 +17,8 @@ Confirm
  -Your commit messages are meaningful
  -You made the changes in a commit that relate to the commit message
  -You don't include changes in a commit that aren't related to the commit message
+
+
+1:1 Help Topics:
+- Each click event give this error in console: "Uncaught Error: rails-ujs has already been loaded!"
+- Use benefit_ids from vitamin form output to render benefit name.

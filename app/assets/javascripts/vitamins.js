@@ -1,3 +1,14 @@
+$(document).on ("turbolinks:load", function(){
+  $("a.new_vitamin").on("click", function(e){
+    $.get(this.href).done(function(response){
+      $("div.vitaminForm").html(response)
+    })
+    e.preventDefault();
+  })
+})
+
+
+
 $(function () {
   $('form').submit(function(event) {
     //prevent form from submitting the default way
