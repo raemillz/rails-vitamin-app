@@ -12,8 +12,11 @@
       <h1 class="masthead-heading mb-0"><%= @user.name %>'s Vitamin Packs</h2>
       <% elsif @vitamin_pack.id %>
       <h1 class="masthead-heading mb-0"><%= @vitamin_pack.name %> Pack</h1>
-      <h2><%= link_to "Edit Pack", edit_vitamin_pack_path %></h2>
-      <span><%= button_to "Delete", @vitamin_pack, method: :delete, data: {confirm: "Are you sure?"} %></span>
+      <h2><%= link_to "Edit Pack", edit_user_vitamin_pack_path %></h2>
+        <%if @next_pack%>
+          <a href="/users/<%=@user.id%>/vitamin_packs/<%=@next_pack.id%>" id="nextPack" class='btn btn-primary btn-mini'> Next Vitamin Pack</a>
+        <%end%>
+      <span><%= button_to "Delete", user_vitamin_pack_path, method: :delete, data: {confirm: "Are you sure?"} %></span>
       <% else %>
       <h1 class="masthead-heading mb-0">Create a New Vitamin Pack</h1>
       <% end %>

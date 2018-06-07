@@ -12,6 +12,7 @@
         <h1 class="masthead-heading mb-0">Vitamin Index</h1>
       <% elsif @vitamin.name %>
         <h1 class="masthead-heading mb-0">Vitamin <%= @vitamin.name %></h1>
+        <span class: "btn btn-primary"><%= button_to "Delete", @vitamin, method: :delete, data: {confirm: "Are you sure?"} %></span>
       <% else %>
         <h1 class="masthead-heading mb-0">Create a New Vitamin</h1>
       <% end %>

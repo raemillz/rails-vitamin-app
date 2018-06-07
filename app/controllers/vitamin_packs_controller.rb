@@ -36,6 +36,8 @@ class VitaminPacksController < ApplicationController
       @vitamin_pack = @user.vitamin_packs.find_by(id: params[:id])
       @packs = current_user.vitamin_packs.order('vitamin_packs.id ASC')
       @next_pack = @packs.where('vitamin_packs.id > ?', @vitamin_pack.id).first
+      @vitamins = @vitamin_pack.vitamins
+      @vitamin = Vitamin.new
       # if @vitamin_pack.nil?
       #   redirect_to user_vitamin_packs_path(@user), alert: "Vitamin pack not found"
       # end
@@ -48,17 +50,17 @@ class VitaminPacksController < ApplicationController
   end
 
   def edit
-    if params[:user_id]
+    # if params[:user_id]
       if @user.nil?
         redirect_to new_user_path, alert: "User not found."
       else
         @vitamin_pack = @user.vitamin_packs.find_by(id: params[:id])
         redirect_to user_vitamin_packs_path(@user), alert: "Vitamin Pack not found." if @vitamin_pack.nil?
       end
-    else
-      @vitamin_pack = VitaminPack.find(params[:id])
-      @vitamin_pack.vitamins.build.benefits.build
-    end
+    # else
+    #   @vitamin_pack = VitaminPack.find(params[:id])
+    #   @vitamin_pack.vitamins.build.benefits.build
+    # end
   end
 
   def update

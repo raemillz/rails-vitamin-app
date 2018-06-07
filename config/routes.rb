@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root "static#welcome"
   devise_for :users, :skip => [:sessions], controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users do
-    resources :vitamin_packs #, only: [:show, :new, :edit]
+    resources :vitamin_packs do
+      resources :vitamins
+    end
   end
   get "/users/signin", to: "sessions#new"
   get "/signin", to: "sessions#new"

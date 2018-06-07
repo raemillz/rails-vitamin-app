@@ -5,6 +5,8 @@ class VitaminsController < ApplicationController
 
   def index
     @vitamins = Vitamin.all
+    @vitamin = Vitamin.new
+
   end
 
   def new
@@ -13,14 +15,16 @@ class VitaminsController < ApplicationController
   end
 
   def create
-    @vitamin = Vitamin.new(vitamin_params)
-    respond_to do |format|
-      if @vitamin.save
-        format.html { redirect_to @vitamin, notice: 'Vitamin was successfully created.' }
-      else
-        format.html { render :new }
-      end
-    end
+    # @vitamin = Vitamin.new(vitamin_params)
+    # respond_to do |format|
+    #   if @vitamin.save
+    #     format.html { redirect_to @vitamin, notice: 'Vitamin was successfully created.' }
+    #   else
+    #     format.html { render :new }
+    #   end
+    # end
+    @vitamin = Vitamin.create(vitamin_params)
+    render json: @vitamin, status: 201
   end
 
   def most_popular

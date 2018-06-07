@@ -15,4 +15,6 @@
 //= require jquery3
 //= require bootstrap-sprockets
 //= require users
+//= require vitamin_packs
+//= require vitamins
 //= require_tree .
