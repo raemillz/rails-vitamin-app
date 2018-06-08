@@ -19,7 +19,13 @@ class VitaminsController < ApplicationController
   end
 
   def create
-    # @vitamin = Vitamin.new(vitamin_params)
+    @vitamin = Vitamin.new(vitamin_params)
+    if @vitamin.valid?
+      @vitamin.save
+      render json: @vitamin, status: 201, serializer: VitaminSerializer
+    else
+      render :new
+    end
     # respond_to do |format|
     #   if @vitamin.save
     #     format.html { redirect_to @vitamin, notice: 'Vitamin was successfully created.' }
@@ -27,8 +33,7 @@ class VitaminsController < ApplicationController
     #     format.html { render :new }
     #   end
     # end
-    @vitamin = Vitamin.create(vitamin_params)
-    render json: @vitamin, status: 201
+    # render json: @vitamin, status: 201
   end
 
   def most_popular
