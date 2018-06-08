@@ -12,6 +12,10 @@ class VitaminsController < ApplicationController
   def new
     @vitamin = Vitamin.new
     @vitamin.benefits.build
+    respond_to do |format|
+      format.html {render layout: false}
+      format.js {render layout: false}
+    end
   end
 
   def create
@@ -43,12 +47,13 @@ class VitaminsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @vitamin.update(vitamin_params)
-        format.html { redirect_to @vitamin, notice: 'Vitamin was successfully updated.' }
-      else
-        format.html { render :edit }
+    if @vitamin.update(vitamin_params)
+      respond_to do |format|
+        format.html { redirect_to vitamin_path(@vitamin), notice: 'Vitamin was successfully updated.' }
+        format.json { render json: @vitamin }
       end
+    else
+      render :edit
     end
   end
 

@@ -22,3 +22,4 @@ Confirm
 1:1 Help Topics:
 - Each click event give this error in console: "Uncaught Error: rails-ujs has already been loaded!"
 - Use benefit_ids from vitamin form output to render benefit name.
+- Render form without heading.
