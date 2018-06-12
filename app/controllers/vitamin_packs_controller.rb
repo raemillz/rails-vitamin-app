@@ -40,42 +40,33 @@ class VitaminPacksController < ApplicationController
 
   def new
     @vitamin_pack = VitaminPack.new
-    @vitamin_pack.vitamins.build.benefits.build
   end
 
   def create
     @vitamin_pack = @user.vitamin_packs.build(vitamin_pack_params)
     respond_to do |format|
       if @vitamin_pack.save
-        format.html {redirect_to @vitamin_pack, notice: 'Vitamin pack was successfully created.'}
+        respond_to do |format|
+          format.html { redirect_to user_path(@user) }
+          format.json { render json: @vitamin_pack, status: 201 }
+        end
+        # format.html {redirect_to @vitamin_pack, notice: 'Vitamin pack was successfully created.'}
       else
         flash[:alert] = "Your vitamin pack could not be saved"
-        format.html {render :new}
+        render :new
       end
     end
   end
 
   def edit
-    # if params[:user_id]
-      if @user.nil?
-        redirect_to new_user_path, alert: "User not found."
-      else
-        # @vitamin_pack = @user.vitamin_packs.find_by(id: params[:id])
-        redirect_to user_vitamin_packs_path(@user), alert: "Vitamin Pack not found." if @vitamin_pack.nil?
-      end
-    # else
-    #   @vitamin_pack = VitaminPack.find(params[:id])
-    #   @vitamin_pack.vitamins.build.benefits.build
-    # end
   end
 
   def update
-    # @vitamin_pack = VitaminPack.find(params[:id])
-
-    @vitamin_pack.update(vitamin_pack_params)
-
-    if @vitamin_pack.save
-      redirect_to @vitamin_pack
+    if @vitamin_pack.update(vitamin_pack_params)
+      respond_to do |format|
+        format.html { redirect_to vitamin_pack_path(@vitamin_pack) }
+        format.json { render json: @vitamin_pack }
+      end
     else
       render :edit
     end
