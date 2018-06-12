@@ -1,0 +1,11 @@
+<div class="pack row">
+  <div class="col-sm-3">
+    <h4><%= show_name(vitamin_pack) %></h4>
+    <p><%= edit_delete_links(vitamin_pack) %></p>
+  </div>
+
+  <div class="col-sm-3">
+    <p><%= vitamin_count(vitamin_pack) %></p>
+    <p><%= link_to "Add Vitamin", new_user_vitamin_pack_vitamin_path(@user, vitamin_pack), class: "btn btn-primary" %></p>
+  </div>
+</div>

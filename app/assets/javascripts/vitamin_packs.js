@@ -1,14 +1,3 @@
-///////////LOAD VITAMINS /////////////////////
-/////////////////// Previous, working, but not ideal /////////////////////////
-// $(document).ready(function(){
-//   $("a.vitamin_packs").on("click", function(e){
-//     $.get(this.href).done(function(response){
-//       $("div.vitamins").html(response)
-//     })
-//     e.preventDefault();
-//   })
-// })
-
 var VitaminPack = function(pack) {
   this.id = pack.id;
   this.name = pack.name;
@@ -49,80 +38,32 @@ VitaminPack.prototype.vitaminListLink = function() {
   return output;
 }
 
-Location.prototype.appointmentsLink = function() {
-  var output = '';
-  if ( this.appointmentCount === 1 ) {
-    output += this.showPageLink("1 appointment");
-  } else {
-    var linkText = this.appointmentCount + " appointments";
-    output += this.showPageLink(linkText);
-  }
+
+VitaminPack.prototype.addVitaminButton = function() {
+  var output = '<a class="btn btn-primary" href="/vitamin_pack/' + this.id + '/vitamins/new">Add Appointment</a>';
   return output;
 }
 
-Location.prototype.addAppointmentButton = function() {
-  var output = '<a class="btn btn-primary" href="/locations/' + this.id + '/appointments/new">Add Appointment</a>';
-  return output;
-}
-
-Location.prototype.showBusinessName = function() {
-  var output = "";
-  if ( this.businessName ) {
-    output += '<p>' + this.businessName + '</p>';
-  }
-  return output;
-}
-
-Location.prototype.showStreetAddress = function() {
-  var output = "";
-  if (this.streetAddress !== "") {
-    output += '<p>' + this.streetAddress + '</p>';
-  }
-  return output;
-}
-
-Location.prototype.showCityStateZip = function() {
-  var output = "";
-  if (this.city && this.state && this.zipcode) {
-    output += '<p>' + this.city + ', ' + this.state + ' ' + this.zipcode + '</p>';
-  }
-  return output;
-}
-
-Location.prototype.buildAddress = function() {
-  var output = "";
-  output += this.showBusinessName();
-  output += this.showStreetAddress();
-  output += this.showCityStateZip();
-  return output;
-}
-
-var buildLocationHeaders = function() {
+var buildVitaminPackHeaders = function() {
   var output = '<h1>';
-    output += 'Locations <a href="locations/new">+ New</a>';
+    output += 'Vitamin Packs <a href="vitamin_packs/new">+ New</a>';
   output += '</h1>';
   output += '<div class="row">';
     output += '<div class="col-sm-3 hidden-xs">';
-      output += '<h3>Nickname</h3>';
+      output += '<h3>Name</h3>';
     output += '</div>';
     output += '<div class="col-sm-3 hidden-xs">';
-      output += '<h3>Address</h3>';
-    output += '</div>';
-    output += '<div class="col-sm-3 hidden-xs">';
-      output += '<h3>Clients</h3>';
-    output += '</div>';
-    output += '<div class="col-sm-3 hidden-xs">';
-      output += '<h3>Appointments</h3>';
+      output += '<h3>Vitamins</h3>';
     output += '</div>';
   output += '</div>';
   return output;
 }
 
-Location.prototype.buildLocationRow = function() {
-  var output = '<div class="location row">';
+VitaminPack.prototype.buildVitaminPackRow = function() {
+  var output = '<div class="pack row">';
     output += '<div class="col-sm-3">';
       output += '<h4>';
-        output += this.showPageLink(this.nickname);
+        output += this.showPageLink(this.name);
       output += '</h4>';
       output += '<p>';
         output += this.editPageLink();
@@ -130,60 +71,53 @@ Location.prototype.buildLocationRow = function() {
       output += '</p>';
     output += '</div>';
     output += '<div class="col-sm-3">';
-      output += this.buildAddress();
+      output += '<p>' + this.vitaminListLink() + '</p>';
     output += '</div>';
     output += '<div class="col-sm-3">';
-      output += '<p>' + this.clientListLink() + '</p>';
-    output += '</div>';
-    output += '<div class="col-sm-3">';
-      output += '<p>' + this.appointmentsLink() + '</p>';
-      output += '<p>' + this.addAppointmentButton() + '</p>';
+      output += '<p>' + this.addVitaminButton() + '</p>';
     output += '</div>';
   output += '</div>';
   return output;
 }
 
-Location.prototype.buildLocation = function(options) {
+VitaminPack.prototype.buildVitaminPack = function(options) {
   var output = '';
   if (options && options.skipIndexLink === true ) {
     output = '';
   } else {
-    output += '<h6 class="f2 normal"><a class="js-locations-index" href="/locations"><span style="position:relative; top:-0.1rem">&larr;</span> All Locations</a></h6>';
+    output += '<h6 class="f2 normal"><a class="js-packs-index" href="/vitamin_packs"><span style="position:relative; top:-0.1rem">&larr;</span> All Vitamin Packs</a></h6>';
   }
-  output += '<h1>Location</h1>';
-  output += '<h2>' + this.nickname + '</h2>';
-  output += this.buildAddress();
+  output += '<h1>Vitamin Pack</h1>';
+  output += '<h2>' + this.name + '</h2>';
   output += '<p>';
     output += this.editPageLink();
     output += this.deleteLink();
   output += '</p>';
-  output += '<h1>Appointments <a href="/locations/' + this.id + '/appointments/new">+ New</a></h1>';
-  $.each(this.appointments, function(index, value){
-    output += '<div class="appointment">';
+  output += '<h1>Vitamins <a href="/vitamin_packs/' + this.id + '/vitamins/new">+ New</a></h1>';
+  $.each(this.vitamins, function(index, value){
+    output += '<div class="vitamin">';
       output += '<h4>';
-        output += '<a href="/appointments/' + value.id + '">' + value.client_name + '</a>';
-        output += ", " + value.time_string;
+        output += '<a href="/vitamins/' + value.id + '">' + value.name + '</a>';
       output += '</h4>';
-      output += '<a href="/appointments/' + value.id + 'edit">Edit</a>';
-      output += ', <a data-confirm="Are you sure you want to delete this appointment?" rel="nofollow" data-method="delete" href="/appointments/' + value.id + '">Delete</a>';
+      output += '<a href="/vitamins/' + value.id + 'edit">Edit</a>';
+      output += ', <a data-confirm="Are you sure you want to delete this vitamin?" rel="nofollow" data-method="delete" href="/vitamins/' + value.id + '">Delete</a>';
     output += '</div>';
   });
   return output;
 }
 
-Location.prototype.buildClientList = function() {
-  var output = '<h6 class="f2 normal"><a class="js-locations-index" href="/locations"><span style="position:relative; top:-0.1rem">&larr;</span> All Locations</a></h6>';
+VitaminPack.prototype.buildVitaminList = function() {
+  var output = '<h6 class="f2 normal"><a class="js-packs-index" href="/vitamin_packs"><span style="position:relative; top:-0.1rem">&larr;</span> All Vitamin Packs</a></h6>';
   output += '<h1>Client List</h1>';
-  output += '<h3>Location</h3>';
+  output += '<h3>Vitamin Pack</h3>';
   output += '<h5>';
-    output += '<a href="/locations/' + this.id + '" class="js-locations-show" id="location-' + this.id + '">' + this.nickname + '</a>';
+    output += '<a href="/vitamin_packs/' + this.id + '" class="js-pack-show" id="pack-' + this.id + '">' + this.name + '</a>';
   output += '</h5>';
-  output += this.buildAddress();
-  output += '<h3>Clients</h3>';
+  output += '<h3>Vitamins</h3>';
   output += '<ul>';
-    $.each(this.clients, function(index, value){
+    $.each(this.vitamins, function(index, value){
       output += '<li>';
-        output += '<a href="/clients/' + value.id + '">' + value.name + '</a>';
+        output += '<a href="/vitamins/' + value.id + '">' + value.name + '</a>';
       output += '</li>';
     });
   output += '</ul>';
@@ -195,35 +129,35 @@ Location.prototype.buildClientList = function() {
 ///////////////////////////
 
 var attachListeners = function() {
-  $(document).on('click', '.js-locations-show', function(event){
+  $(document).on('click', '.js-packs-show', function(event){
     event.preventDefault();
     var id = $(this).attr('id').split('-')[1];
-    getLocation(id);
+    getVitaminPack(id);
   });
-  $(document).on('click', '.js-locations-index', function(event){
+  $(document).on('click', '.js-packs-index', function(event){
     event.preventDefault();
-    getLocations();
+    getVitaminPacks();
   });
-  $(document).on('click', '.js-locations-client-list', function(event){
+  $(document).on('click', '.js-packs-vitamin-list', function(event){
     event.preventDefault();
     var id = $(this).attr('href').split('/')[2];
-    getClientList(id);
+    getVitaminList(id);
   })
-  $(document).on('submit', 'form#new_location', function(event){
+  $(document).on('submit', 'form#new_vitamin_pack', function(event){
     event.preventDefault();
 
     var values = $(this).serialize();
 
-    createLocation(values);
+    createVitaminPack(values);
   });
 
-  $(document).on('submit', '.edit_location', function(event){
+  $(document).on('submit', '.edit_vitamin_pack', function(event){
     event.preventDefault();
 
     var values = $(this).serialize();
     var id = $(this).attr('id').split('_')[2];
 
-    updateLocation(id, values);
+    updateVitaminPack(id, values);
   });
 }
 $(function(){
@@ -234,59 +168,59 @@ $(function(){
 // AJAX Calls
 ///////////////////////////
 
-var getLocations = function (){
-  $.get('/locations.json').done(function(data){
-    var locations = buildLocationHeaders();
-    locations += '<div class="locations">';
+var getVitaminPacks = function (){
+  $.get('/vitamin-packs.json').done(function(data){
+    var vitaminPacks = buildVitaminPackHeaders();
+    vitaminPacks += '<div class="packs">';
       $.each(data, function(index, value){
-        var location = new Location(data[index]);
-        locations += location.buildLocationRow();
+        var vitaminPack = new VitaminPack(data[index]);
+        vitaminPacks += vitaminPack.buildVitaminPackRow();
       });
-    locations += '</div>';
-    $('.main').html(locations);
+    vitaminPacks += '</div>';
+    $('.main').html(vitaminPacks);
   });
 }
 
-var getLocation = function(id) {
-  $.get('/locations/'+ id + '.json').done(function(data){
-    var location = new Location(data);
-    var html = location.buildLocation();
+var getVitaminPack = function(id) {
+  $.get('/vitamin_packs/'+ id + '.json').done(function(data){
+    var vitaminPack = new VitaminPack(data);
+    var html = location.buildVitaminPack();
     $('.main').html(html);
   });
 }
 
-var getClientList = function(id) {
-  $.get('/locations/'+ id + '.json').done(function(data){
-    var location = new Location(data);
-    html = location.buildClientList();
+var getVitaminList = function(id) {
+  $.get('/vitamin_packs/'+ id + '.json').done(function(data){
+    var vitaminPack = new VitaminPack(data);
+    html = vitaminPack.buildVitaminList();
     $('.main').html(html);
   });
 }
 
-var createLocation = function(values) {
+var createVitaminPack = function(values) {
   $.ajax({
-    url: '/locations.json',
+    url: '/vitamin_packs.json',
     type: 'POST',
     data: values,
     dataType: 'JSON',
     success: function(data) {
-      var location = new Location(data);
-      var response = location.buildLocation({skipIndexLink: true});
+      var vitaminPack = new VitaminPack(data);
+      var response = vitamin_pack.buildVitaminPack({skipIndexLink: true});
       $('.main').html(response);
     }
   });
 }
 
-var updateLocation = function(id, values) {
-  var url = '/locations/' + id;
+var updateVitaminPack = function(id, values) {
+  var url = '/vitamin_packs/' + id;
   $.ajax({
     url: url,
     type: 'PATCH',
     data: values,
     dataType: 'JSON',
     success: function(data) {
-      var location = new Location(data);
-      var response = location.buildLocation({skipIndexLink: true});
+      var vitaminPack = new VitaminPack(data);
+      var response = vitaminPack.buildVitaminPack({skipIndexLink: true});
       $('.main').html(response);
     }
   });
