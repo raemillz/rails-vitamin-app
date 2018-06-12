@@ -19,6 +19,11 @@ class VitaminPacksController < ApplicationController
     end
   end
 
+  def vitamin_list
+    @vitamin_pack = @user.vitamin_packs.find_by(id: params[:id])
+    @vitamins = @vitamin_pack.vitamins
+  end
+
   def index
     @vitamin_packs = @user.vitamin_packs
     # respond_to do |format|

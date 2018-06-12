@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   resources :vitamin_packs
   get "vitamins/popular", to: "vitamins#most_popular"
   post "vitamins/popular", to: "vitamins#most_popular"
+
+  get '/vitamin_packs/:id/vitamin_list', to: 'vitamin_packs#vitamin_list', as: 'vitamin_list'
+
 end
