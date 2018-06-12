@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   post "vitamins/popular", to: "vitamins#most_popular"
 
   get '/vitamin_packs/:id/vitamin_list', to: 'vitamin_packs#vitamin_list', as: 'vitamin_list'
+  get '/vitamins/:id/benefit_list', to: 'vitamins#benefit_list', as: 'benefit_list'
 
 end

@@ -8,14 +8,14 @@ var VitaminPack = function(pack) {
 };
 
 VitaminPack.prototype.showPageLink = function(text) {
-  var output = '<a href="/vitamin_packs/' + this.id + '" class="js-packs-show" id="pack-' + this.id + '">';
+  var output = '<a href="/user/' + this.user_id + '/vitamin_packs/' + this.id + '" class="js-packs-show" id="pack-' + this.id + '">';
     output += text;
   output += '</a>';
   return output;
 }
 
 VitaminPack.prototype.editPageLink = function() {
-  var output = '<a class="btn btn-secondary" href="/users/' + this.user_id + '/vitamin_packs/' + this.id + '/edit">';
+  var output = '<a class="btn btn-secondary" href="/vitamin_packs/' + this.id + '/edit">';
     output += "Edit";
   output += '</a>';
   return output;
@@ -41,7 +41,7 @@ VitaminPack.prototype.vitaminListLink = function() {
 
 
 VitaminPack.prototype.addVitaminButton = function() {
-  var output = '<a class="btn btn-primary" href="/vitamin_pack/' + this.id + '/vitamins/new">Add Appointment</a>';
+  var output = '<a class="btn btn-primary" href="/vitamin_pack/' + this.id + '/vitamins/new">Add Vitamin</a>';
   return output;
 }
 
@@ -129,9 +129,8 @@ VitaminPack.prototype.buildVitaminList = function() {
 // Event Listeners
 ///////////////////////////
 
-var attachListeners = function() {
-  $(document).on ("turbolinks:load", function(){
-    $(document).on('click', '.js-packs-show', function(event){
+var attachListeners = $(document).on ("turbolinks:load", function(){
+    $('.js-packs-show').on('click', function(event){
       event.preventDefault();
       var id = $(this).attr('id').split('-')[1];
       getVitaminPack(id);
@@ -139,13 +138,14 @@ var attachListeners = function() {
     $(document).on('click', '.js-packs-index', function(event){
       event.preventDefault();
       getVitaminPacks();
+
     });
     $(document).on('click', '.js-packs-vitamin-list', function(event){
       event.preventDefault();
       var id = $(this).attr('href').split('/')[2];
       getVitaminList(id);
     })
-    $(document).on('submit', 'form#new_vitamin_pack', function(event){
+    $('form#new_vitamin_pack').on('submit', function(event){
       event.preventDefault();
 
       var values = $(this).serialize();
@@ -153,15 +153,14 @@ var attachListeners = function() {
       createVitaminPack(values);
     });
 
-    $(document).on('submit', '.edit_vitamin_pack', function(event){
+    $('.edit_vitamin_pack').on('submit', function(event){
       event.preventDefault();
       var values = $(this).serialize();
       var id = $(this).attr('id').split('_')[3];
-
       updateVitaminPack(id, values);
     });
   });
-}
+
 
 $(function(){
   attachListeners();
@@ -172,7 +171,7 @@ $(function(){
 ///////////////////////////
 
 var getVitaminPacks = function (){
-  $.get('/vitamin-packs.json').done(function(data){
+  $.get('/vitamin_packs.json').done(function(data){
     var vitaminPacks = buildVitaminPackHeaders();
     vitaminPacks += '<div class="packs">';
       $.each(data, function(index, value){

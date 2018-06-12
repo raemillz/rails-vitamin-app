@@ -7,7 +7,7 @@ class VitaminPacksController < ApplicationController
     @vitamin_packs = @user.vitamin_packs
     respond_to do |format|
       format.html { render :index }
-      format.json { render json: @vitaminPacks, each_serializer: VitaminPackSerializer }
+      format.json { render json: @vitamin_packs, each_serializer: VitaminPackSerializer }
     end
   end
 
@@ -47,7 +47,7 @@ class VitaminPacksController < ApplicationController
     respond_to do |format|
       if @vitamin_pack.save
         respond_to do |format|
-          format.html { redirect_to user_path(@user) }
+          format.html { redirect_to user_path(@user), notice: 'Vitamin pack was successfully created.' }
           format.json { render json: @vitamin_pack, status: 201 }
         end
         # format.html {redirect_to @vitamin_pack, notice: 'Vitamin pack was successfully created.'}
@@ -64,7 +64,7 @@ class VitaminPacksController < ApplicationController
   def update
     if @vitamin_pack.update(vitamin_pack_params)
       respond_to do |format|
-        format.html { redirect_to vitamin_pack_path(@vitamin_pack) }
+        format.html { redirect_to vitamin_pack_path(@vitamin_pack), notice: 'Vitamin pack was successfully updated.' }
         format.json { render json: @vitamin_pack }
       end
     else

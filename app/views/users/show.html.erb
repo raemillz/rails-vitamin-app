@@ -11,13 +11,18 @@
             <% if @user.vitamin_packs.any? %>
 
             <div class="center">
-              <h3><span><%= link_to "Load Vitamin Packs", user_vitamin_packs_path(@user), :class => "load_packs" %></span></h3>
-              <div class="packs">
+
+              <h3><span><%= link_to "Load Vitamin Packs", user_vitamin_packs_path(@user), :class => "js-packs-index" %></span></h3>
+
+              <div class="main">
               </div>
+
             </div>
+
             <% else %>
               <h3><span>You don't have any vitamin packs yet! Create one <%= link_to "here", new_user_vitamin_pack_path(@user) %>.</span></h3>
             <% end %>
+            
           </strong>
         </div>
       </section>

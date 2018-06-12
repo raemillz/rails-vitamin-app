@@ -24,4 +24,8 @@ class Vitamin < ApplicationRecord
     Vitamin.find(@pop_id)
   end
 
+  def benefit_count
+    benefits.count
+  end
+
 end

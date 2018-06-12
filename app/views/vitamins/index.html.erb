@@ -1,6 +1,24 @@
 <%= render 'header' %>
 
-<section>
+<h1>Vitamins <%= link_to "+ New", new_vitamin_path %></h1>
+<% if @vitamins.any? %>
+<div class="row text-center">
+  <div class="col-sm-3 hidden-xs text-center">
+    <h3>Name</h3>
+  </div>
+  <div class="col-sm-3 hidden-xs text-center">
+    <h3>Benefits</h3>
+  </div>
+</div>
+<% else %>
+<p>No vitamins yet.</p>
+<% end %>
+<div class="packs">
+  <%= render partial: "vitamin_index", collection: @vitamins, as: :vitamin %>
+</div>
+
+
+<!-- <section>
   <div>
     <table class="table">
       <thead>
@@ -52,6 +70,6 @@
   <p id="vitaminBenefits"></p>
 
 </div>
-</section>
+</section> -->
 
 <%= render 'layouts/footer'%>

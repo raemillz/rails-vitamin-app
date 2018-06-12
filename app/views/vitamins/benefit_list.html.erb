@@ -1,0 +1,10 @@
+<h1>Benefit List</h1>
+<h3>Vitamin</h3>
+<h5><%= link_to @vitamin.name, vitamin_path(@vitamin) %></h5>
+
+<h3>Benefits</h3>
+<ul>
+  <% @benefits.each do |benefit| %>
+    <li><%= link_to benefit.name, benefit_path(benefit) %></li>
+  <% end %>
+</ul>
