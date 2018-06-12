@@ -19,7 +19,7 @@ class VitaminsController < ApplicationController
   end
 
   def create
-    # Renders JSON after form submitted without redirecting
+    # Renders JSON after form submitted without redirecting from index page.
     @vitamin = Vitamin.new(vitamin_params)
     if @vitamin.valid?
       @vitamin.save
