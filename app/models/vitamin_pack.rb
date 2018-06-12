@@ -17,4 +17,8 @@ class VitaminPack < ApplicationRecord
     user = User.find_or_create_by(name: name)
     self.user = user
   end
+
+  def vitamin_count
+    vitamins.count
+  end
 end
