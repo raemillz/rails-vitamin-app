@@ -1,16 +1,16 @@
 <h1>Vitamin Packs <%= link_to "+ New", new_vitamin_pack_path %></h1>
 <% if @vitamin_packs.any? %>
-<div class="row text-center">
-  <div class="col-sm-3 hidden-xs text-center">
+<div class="row center text-center">
+  <div class="col-lg-6 hidden-xs center text-center">
     <h3>Name</h3>
   </div>
-  <div class="col-sm-3 hidden-xs text-center">
+  <div class="col-lg-6 hidden-xs center text-center">
     <h3>Vitamins</h3>
   </div>
 </div>
 <% else %>
 <p>No vitamin packs yet.</p>
 <% end %>
-<div class="packs">
+<div class="packs center text-center">
   <%= render partial: "vitamin_pack_index", collection: @vitamin_packs, as: :vitamin_pack %>
 </div>
