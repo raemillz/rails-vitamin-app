@@ -12,13 +12,14 @@ class VitaminsController < ApplicationController
   def new
     @vitamin = Vitamin.new
     @vitamin.benefits.build
-    respond_to do |format|
-      format.html {render layout: false}
-      format.js {render layout: false}
-    end
+    # respond_to do |format|
+    #   format.html {render layout: false}
+    #   format.js {render layout: false}
+    # end
   end
 
   def create
+    # Renders JSON after form submitted without redirecting
     @vitamin = Vitamin.new(vitamin_params)
     if @vitamin.valid?
       @vitamin.save
@@ -26,14 +27,6 @@ class VitaminsController < ApplicationController
     else
       render :new
     end
-    # respond_to do |format|
-    #   if @vitamin.save
-    #     format.html { redirect_to @vitamin, notice: 'Vitamin was successfully created.' }
-    #   else
-    #     format.html { render :new }
-    #   end
-    # end
-    # render json: @vitamin, status: 201
   end
 
   def most_popular
@@ -52,15 +45,14 @@ class VitaminsController < ApplicationController
   end
 
   def update
-    if @vitamin.update(vitamin_params)
-      respond_to do |format|
-        format.html { redirect_to vitamin_path(@vitamin), notice: 'Vitamin was successfully updated.' }
-        format.json { render json: @vitamin }
-      end
-    else
-      render :edit
-    end
-  end
+    respond_to do |format|
+      if @vitamin.update(vitamin_params)
+        format.html { redirect_to @vitamin, notice: 'Vitamin was successfully updated.' }
+      else
+       format.html { render :edit }
+       end
+     end
+   end
 
   def destroy
     @vitamin.destroy

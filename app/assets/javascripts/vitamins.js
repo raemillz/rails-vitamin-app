@@ -8,7 +8,6 @@ $(document).on ("turbolinks:load", function(){
 })
 
 
-
 $(function () {
   $('form').submit(function(event) {
     //prevent form from submitting the default way

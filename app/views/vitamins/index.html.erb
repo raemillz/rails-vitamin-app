@@ -28,7 +28,8 @@
             <% end %>
             <td>
               <%= link_to "View", vitamin %> |
-              <%= link_to "Edit", edit_vitamin_path(vitamin) %>
+              <%= link_to "Edit", edit_vitamin_path(vitamin) %> |
+              <span class: "btn btn-primary"><%= button_to "Delete", vitamin, method: :delete, data: {confirm: "Are you sure?"} %></span>
             </td>
           </tr>
         <% end %>
