@@ -82,10 +82,10 @@ var buildVitaminHeaders = function() {
     output += 'Vitamins <a href="vitamins/new">+ New</a>';
   output += '</h1>';
   output += '<div class="row">';
-    output += '<div class="col-sm-3 hidden-xs">';
+    output += '<div class="col-lg-6 hidden-xs">';
       output += '<h3>Name</h3>';
     output += '</div>';
-    output += '<div class="col-sm-3 hidden-xs">';
+    output += '<div class="col-lg-6 hidden-xs">';
       output += '<h3>Benefits</h3>';
     output += '</div>';
   output += '</div>';
@@ -94,7 +94,7 @@ var buildVitaminHeaders = function() {
 
 Vitamin.prototype.buildVitaminRow = function() {
   var output = '<div class="vitamin row">';
-    output += '<div class="col-sm-3">';
+    output += '<div class="col-lg-6">';
       output += '<h4>';
         output += this.showPageLink(this.name);
       output += '</h4>';
@@ -103,7 +103,7 @@ Vitamin.prototype.buildVitaminRow = function() {
         output += this.deleteLink();
       output += '</p>';
     output += '</div>';
-    output += '<div class="col-sm-3">';
+    output += '<div class="col-lg-6">';
       output += '<p>' + this.benefitListLink() + '</p>';
     output += '</div>';
     // output += '<div class="col-sm-3">';
