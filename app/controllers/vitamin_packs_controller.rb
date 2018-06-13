@@ -29,8 +29,6 @@ class VitaminPacksController < ApplicationController
     end
   end
 
-  ##################################################################
-
   def new
     @vitamin_pack = VitaminPack.new
   end
@@ -47,9 +45,9 @@ class VitaminPacksController < ApplicationController
     #     flash[:alert] = "Your vitamin pack could not be saved"
     #     render :new
     #   end
-    @vitamin_pack = VitaminPack.new(vitamin_pack_params)
+    @vitamin_pack = VitaminPack.create(vitamin_pack_params)
+    @vitamin_pack.user = @user
     if @vitamin_pack.valid?
-      @vitamin_pack.user = current_user
       @vitamin_pack.save
       respond_to do |format|
         format.html { redirect_to vitamin_packs_path }

@@ -160,42 +160,42 @@ Vitamin.prototype.buildBenefitList = function() {
 // Event Listeners
 ///////////////////////////
 
-var attachListeners = function() {
-  $(document).on ("turbolinks:load", function(){
-    $('.js-vitamins-show').on('click', function(event){
-      event.preventDefault();
-      var id = $(this).attr('id').split('-')[1];
-      getVitamin(id);
-    });
-    $(document).on('click', '.js-vitamins-index', function(event){
-      event.preventDefault();
-      getVitamins();
-    });
-    $(document).on('click', '.js-vitamins-benefit-list', function(event){
-      event.preventDefault();
-      var id = $(this).attr('href').split('/')[2];
-      getBenefitList(id);
-    })
-    $(document).on('submit', 'form#new_vitamin', function(event){
-      event.preventDefault();
 
-      var values = $(this).serialize();
+$(document).on ("turbolinks:load", function(){
 
-      createVitamin(values);
-    });
-
-    $(document).on('submit', '.edit_vitamin', function(event){
-      event.preventDefault();
-      var values = $(this).serialize();
-      var id = $(this).attr('id').split('_')[3];
-      updateVitamin(id, values);
-    });
+  $(document).on('click', '.js-vitamins-show', function(event){
+    event.preventDefault();
+    var id = $(this).attr('id').split('-')[1];
+    getVitamin(id);
   });
-}
 
-$(function(){
-  attachListeners();
-})
+  $(document).on('click', '.js-vitamins-index', function(event){
+    event.preventDefault();
+    getVitamins();
+  });
+
+  $(document).on('click', '.js-vitamins-benefit-list', function(event){
+    event.preventDefault();
+    var id = $(this).attr('href').split('/')[2];
+    getBenefitList(id);
+  })
+
+  $(document).on('submit', '.new_vitamin', function(event){
+    event.preventDefault();
+    var values = $(this).serialize();
+    createVitamin(values);
+  });
+
+  $(document).on('submit', '.edit_vitamin', function(event){
+    event.preventDefault();
+    var values = $(this).serialize();
+    var id = $(this).attr('id').split('_')[3];
+    updateVitamin(id, values);
+  });
+
+});
+
+
 
 ///////////////////////////
 // AJAX Calls
@@ -230,17 +230,27 @@ var getBenefitList = function(id) {
   });
 }
 
+// var createVitamin = function(values) {
+//   $.ajax({
+//     url: '/vitamins.json',
+//     type: 'POST',
+//     data: values,
+//     dataType: 'JSON',
+//     success: function(data) {
+//       var vitamin = new Vitamin(data);
+//       var response = vitamin.buildVitamin({skipIndexLink: true});
+//       $('.main').html(response);
+//     }
+//   });
+// }
+
 var createVitamin = function(values) {
-  $.ajax({
-    url: '/vitamins.json',
-    type: 'POST',
-    data: values,
-    dataType: 'JSON',
-    success: function(data) {
-      var vitamin = new Vitamin(data);
-      var response = vitamin.buildVitamin({skipIndexLink: true});
-      $('.main').html(response);
-    }
+  var posting = $.post("/vitamins", values);
+
+  posting.done(function(data){
+    var vitamin = new Vitamin(data);
+    var response = vitamin.buildVitamin({skipIndexLink: true});
+    $('.main').html(response);
   });
 }
 

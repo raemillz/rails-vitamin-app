@@ -4,3 +4,4 @@ class VitaminPackSerializer < ActiveModel::Serializer
   has_many :vitamins
   has_many :vitamin_pack_vitamins
 end
+ 
