@@ -1,5 +1,5 @@
 <%= render 'header' %>
-<div class="container text-center center">
+<!-- <div class="container text-center center">
   <h1>Vitamins <%= link_to "+ New", new_vitamin_path %></h1>
   <% if @vitamins.any? %>
   <div class="row text-center">
@@ -18,7 +18,12 @@
   </div>
 </div>
 
-<!-- <section>
+<div class="main text-center">
+</div> -->
+
+<!-- ############################################JQUERY ABOVE, ORIGINAL RAILS BELOW ########################################## -->
+
+<section>
   <div>
     <table class="table">
       <thead>
@@ -55,20 +60,9 @@
     </table>
   </div>
 
-  <div class="text-center">
-    <h3><span><%= link_to "Create a New Vitamin!", new_vitamin_path, :class => "new_vitamin" %></span></h3>
-    <div class="vitaminForm">
-    </div>
-  </div>
 
 
 </br>
 
 
-</section> -->
-
-<!-- <div id="vitaminResult">
-  <p id="vitaminName"></p>
-  <p id="vitaminCapsuleAmount"></p>
-  <p id="vitaminBenefits"></p>
-</div> -->
+</section>

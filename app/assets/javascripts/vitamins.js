@@ -174,7 +174,7 @@ $(document).on ("turbolinks:load", function(){
     getVitamins();
   });
 
-  $(document).on('click', '.js-vitamins-benefit-list', function(event){
+  $(document).on('click', '.js-vitamins-benefit-list', function(event){ 
     event.preventDefault();
     var id = $(this).attr('href').split('/')[2];
     getBenefitList(id);
