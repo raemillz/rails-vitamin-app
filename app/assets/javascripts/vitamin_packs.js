@@ -15,7 +15,7 @@ VitaminPack.prototype.showPageLink = function(text) {
 }
 
 VitaminPack.prototype.editPageLink = function() {
-  var output = '<a class="btn btn-secondary" href="/vitamin_packs/' + this.id + '/edit">';
+  var output = '<a class="btn btn-secondary" href="/vitamin_packs/' + this.id + '/edit" class="edit_vitamin_pack">';
     output += "Edit";
   output += '</a>';
   return output;
@@ -105,13 +105,13 @@ VitaminPack.prototype.buildVitaminList = function() {
     output += '<a href="/vitamin_packs/' + this.id + '" class="js-pack-show" id="pack-' + this.id + '">' + this.name + '</a>';
   output += '</h5>';
   output += '<h3>Vitamins</h3>';
-  output += '<ul>';
+  output += '<div>';
     $.each(this.vitamins, function(index, value){
-      output += '<li>';
+      output += '<p>';
         output += '<a href="/vitamins/' + value.id + '">' + value.name + '</a>';
-      output += '</li>';
+      output += '</p>';
     });
-  output += '</ul>';
+  output += '</div>';
   return output;
 }
 
