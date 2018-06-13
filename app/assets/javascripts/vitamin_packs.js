@@ -41,7 +41,7 @@ VitaminPack.prototype.vitaminListLink = function() {
 
 var buildVitaminPackHeaders = function() {
   var output = '<h1>';
-    output += 'Vitamin Packs <a href="vitamin_packs/new">+ New</a>';
+    output += 'Vitamin Packs <a href="/vitamin_packs/new">+ New</a>';
   output += '</h1>';
   output += '<div class="row align-items-center">';
     output += '<div class="align-items-center col-lg-6 order-lg-1 hidden-xs">';
