@@ -36,18 +36,27 @@ class VitaminPacksController < ApplicationController
   end
 
   def create
-    @vitamin_pack = @user.vitamin_packs.build(vitamin_pack_params)
-    respond_to do |format|
-      if @vitamin_pack.save
-        respond_to do |format|
-          format.html { redirect_to user_path(@user), notice: 'Vitamin pack was successfully created.' }
-          format.json { render json: @vitamin_pack, status: 201 }
-        end
-        # format.html {redirect_to @vitamin_pack, notice: 'Vitamin pack was successfully created.'}
-      else
-        flash[:alert] = "Your vitamin pack could not be saved"
-        render :new
+    # # @vitamin_pack = @user.vitamin_packs.build(vitamin_pack_params)
+    # @vitamin_pack = VitaminPack.new(vitamin_pack_params)
+    #   if @vitamin_pack.save
+    #     respond_to do |format|
+    #       format.html { redirect_to user_path(@user), notice: 'Vitamin pack was successfully created.' }
+    #       format.json { render json: @vitamin_pack, status: 201, serializer: VitaminPackSerializer  }
+    #     end
+    #   else
+    #     flash[:alert] = "Your vitamin pack could not be saved"
+    #     render :new
+    #   end
+    @vitamin_pack = VitaminPack.new(vitamin_pack_params)
+    if @vitamin_pack.valid?
+      @vitamin_pack.user = current_user
+      @vitamin_pack.save
+      respond_to do |format|
+        format.html { redirect_to vitamin_packs_path }
+        format.json { render json: @vitamin_pack, status: 201 }
       end
+    else
+      render :new
     end
   end
 

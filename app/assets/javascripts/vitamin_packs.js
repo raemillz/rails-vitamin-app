@@ -41,7 +41,7 @@ VitaminPack.prototype.vitaminListLink = function() {
 
 var buildVitaminPackHeaders = function() {
   var output = '<h1>';
-    output += 'Vitamin Packs <a href="/vitamin_packs/new">+ New</a>';
+    output += 'Vitamin Packs <a href="/vitamin_packs/new" class="js-new-pack">+ New </a>';
   output += '</h1>';
   output += '<div class="row align-items-center">';
     output += '<div class="align-items-center col-lg-6 order-lg-1 hidden-xs">';
@@ -120,21 +120,24 @@ VitaminPack.prototype.buildVitaminList = function() {
 ///////////////////////////
 
 var attachListeners = $(document).on ("turbolinks:load", function(){
-    $('.js-packs-show').on('click', function(event){
+
+    $(document).on('click', '.js-packs-show', function(event){
       event.preventDefault();
       var id = $(this).attr('id').split('-')[1];
       getVitaminPack(id);
     });
+
     $(document).on('click', '.js-packs-index', function(event){
       event.preventDefault();
       getVitaminPacks();
-
     });
+
     $(document).on('click', '.js-packs-vitamin-list', function(event){
       event.preventDefault();
       var id = $(this).attr('href').split('/')[2];
       getVitaminList(id);
     })
+
     $(document).on('submit', 'form#new_vitamin_pack', function(event){
       event.preventDefault();
 
