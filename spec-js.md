@@ -4,15 +4,17 @@ Specs:
 - Use jQuery for implementing new requirements
 
 - Include a show resource rendered using jQuery and an Active Model Serialization JSON backend.
+  [X]--> For VitaminPacks and Vitamins.
 - Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
+  [X]--> For VitaminPacks and Vitamins.
 - Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
   [X]--> User has_many VitaminPacks and they appended to User show page once link is clicked.
 - Use your Rails API and a form to create a resource and render the response without a page refresh.
-  [X]--> New vitamin form on vitamin index page.
+  [X]-->
 - Translate JSON responses into js model objects.
-  [X]--> Object from vitamin serializer rendered from vitamin form.
+  [X]--> In vitamin_packs.js and vitamins.js
 - At least one of the js model objects must have at least one method added by your code to the prototype.
-
+  [X]--> In vitamin_packs.js and vitamins.js
 
 Confirm
 
@@ -23,7 +25,7 @@ Confirm
 
 
 1:1 Help Topics:
-- Each click event give this error in console: "Uncaught Error: rails-ujs has already been loaded!"
-- Use benefit_ids from vitamin form output to render benefit name.
-- Render form without heading.
-- Delete Button stopped working with the introduction of jquery and json.
+- Form issues rendering new object. (Think it's a SQL issue.)
+
+To Do:
+- Add delete button to Benefits.
