@@ -34,10 +34,11 @@ class VitaminPacksController < ApplicationController
   end
 
   def create
-    @vitamin_pack = VitaminPack.create(vitamin_pack_params)
-    @vitamin_pack.user = @user
-    if @vitamin_pack.valid?
-      @vitamin_pack.save
+    @vitamin_pack = @user.vitamin_packs.build(vitamin_pack_params)
+    # @vitamin_pack = VitaminPack.create!(vitamin_pack_params)
+    # @vitamin_pack.user = @user
+    # if @vitamin_pack.valid?
+      if @vitamin_pack.save
       respond_to do |format|
         format.html { redirect_to vitamin_packs_path }
         format.json { render json: @vitamin_pack, status: 201 }

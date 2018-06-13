@@ -4,7 +4,7 @@ class VitaminsController < ApplicationController
   #skip_before_action :set_vitamin, :only => [:most_popular]
 
   def index
-    @vitamins = Vitamin.all
+    @vitamins = Vitamin.all.includes(:benefits)
     # @vitamin = Vitamin.new
     respond_to do |format|
       format.html { render :index }
