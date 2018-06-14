@@ -85,7 +85,8 @@ VitaminPack.prototype.buildVitaminPack = function(options) {
     output += this.editPageLink();
     output += this.deleteLink();
   output += '</p>';
-  output += '<h1>Vitamins <a href="/vitamin_packs/' + this.id + '/vitamins/new">+ New</a></h1>';
+  output += '<h2>Vitamins:</h2>'
+  // output += '<h1>Vitamins <a href="/vitamin_packs/' + this.id + '/vitamins/new">+ New</a></h1>';
   $.each(this.vitamins, function(index, value){
     output += '<div class="vitamin">';
       output += '<h4>';
