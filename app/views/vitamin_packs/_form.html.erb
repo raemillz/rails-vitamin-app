@@ -32,7 +32,8 @@
 
   <div class="field text-center">
     <strong>Don't see what you're looking for? Create a new vitamin:</strong>
-    <%= f.fields_for :vitamins, (@vitamin_pack.vitamins - Vitamin.all) do |vitamin| %>
+    <%= f.fields_for :vitamins, (Vitamin.new) do |vitamin| %>
+
       <div class="vitamin_fields">
         <div class="field">
           <%= vitamin.label :name, "Vitamin" %>
@@ -53,7 +54,7 @@
           </div>
           <strong>Not the benefit you were looking for? Create a new benefit:</strong>
           <div class="field text-center">
-            <%= vitamin.fields_for :benefits do |benefit| %>
+            <%= vitamin.fields_for :benefits, (Benefit.new) do |benefit| %>
               <div class="benefit_fields">
                 <div class="field">
                   <%= benefit.label :name, "Benefit" %>
@@ -61,12 +62,14 @@
                 </div>
               </div>
             <% end %>
+          <% end %>
+
+
           </div>
         </div>
 
       </div>
 
-    <% end %>
   </div>
 
   </br>
