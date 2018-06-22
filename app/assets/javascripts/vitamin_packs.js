@@ -8,28 +8,28 @@ var VitaminPack = function(pack) {
 };
 
 VitaminPack.prototype.showPageLink = function(text) {
-  var output = '<a href="/user/' + this.user_id + '/vitamin_packs/' + this.id + '" class="js-packs-show" id="pack-' + this.id + '">';
+  let output = '<a href="/user/' + this.user_id + '/vitamin_packs/' + this.id + '" class="js-packs-show" id="pack-' + this.id + '">';
     output += text;
   output += '</a>';
   return output;
 }
 
 VitaminPack.prototype.editPageLink = function() {
-  var output = '<a class="btn btn-secondary" href="/vitamin_packs/' + this.id + '/edit" class="edit_vitamin_pack">';
+  let output = '<a class="btn btn-secondary" href="/vitamin_packs/' + this.id + '/edit" class="edit_vitamin_pack">';
     output += "Edit";
   output += '</a>';
   return output;
 }
 
 VitaminPack.prototype.deleteLink = function() {
-  var output = '<a class="btn btn-danger" data-confirm="Are you sure you really want to delete this vitamin pack?" rel="nofollow" data-method="delete" href="/vitamin_packs/' + this.id + '">';
+  let output = '<a class="btn btn-danger" data-confirm="Are you sure you really want to delete this vitamin pack?" rel="nofollow" data-method="delete" href="/vitamin_packs/' + this.id + '">';
     output += "Delete";
   output += '</a>';
   return output;
 }
 
 VitaminPack.prototype.vitaminListLink = function() {
-  var output = '<a href="/vitamin_packs/' + this.id + '/vitamin_list" class="js-packs-vitamin-list">';
+  let output = '<a href="/vitamin_packs/' + this.id + '/vitamin_list" class="js-packs-vitamin-list">';
     if ( this.vitaminCount === 1 ) {
       output += "1 vitamin";
     } else {
@@ -40,8 +40,8 @@ VitaminPack.prototype.vitaminListLink = function() {
 }
 
 var buildVitaminPackHeaders = function() {
-  var output = '<h1>';
-    output += 'Vitamin Packs <a href="/vitamin_packs/new" class="js-new-pack">+ New </a>';
+  let output = '<h1>';
+    output += 'Vitamin Packs';
   output += '</h1>';
   output += '<div class="row align-items-center">';
     output += '<div class="align-items-center col-lg-6 order-lg-1 hidden-xs">';
@@ -55,7 +55,7 @@ var buildVitaminPackHeaders = function() {
 }
 
 VitaminPack.prototype.buildVitaminPackRow = function() {
-  var output = '<div class="pack row center text-center">';
+  let output = '<div class="pack row center text-center">';
     output += '<div class="col-lg-6 center text-center">';
       output += '<h4>';
         output += this.showPageLink(this.name);
@@ -73,7 +73,7 @@ VitaminPack.prototype.buildVitaminPackRow = function() {
 }
 
 VitaminPack.prototype.buildVitaminPack = function(options) {
-  var output = '';
+  let output = '';
   if (options && options.skipIndexLink === true ) {
     output = '';
   } else {
@@ -99,7 +99,7 @@ VitaminPack.prototype.buildVitaminPack = function(options) {
 }
 
 VitaminPack.prototype.buildVitaminList = function() {
-  var output = '<h6 class="f2 normal"><a class="js-packs-index" href="/vitamin_packs"><span style="position:relative; top:-0.1rem">&larr;</span> All Vitamin Packs</a></h6>';
+  let output = '<h6 class="f2 normal"><a class="js-packs-index" href="/vitamin_packs"><span style="position:relative; top:-0.1rem">&larr;</span> All Vitamin Packs</a></h6>';
   output += '<h3>Vitamin Pack</h3>';
   output += '<h5>';
     output += '<a href="/vitamin_packs/' + this.id + '" class="js-pack-show" id="pack-' + this.id + '">' + this.name + '</a>';
@@ -123,7 +123,7 @@ $(document).on ("turbolinks:load", function(){
 
     $(document).on('click', '.js-packs-show', function(event){
       event.preventDefault();
-      var id = $(this).attr('id').split('-')[1];
+      const id = $(this).attr('id').split('-')[1];
       getVitaminPack(id);
     });
 
@@ -134,14 +134,14 @@ $(document).on ("turbolinks:load", function(){
 
     $(document).on('click', '.js-packs-vitamin-list', function(event){
       event.preventDefault();
-      var id = $(this).attr('href').split('/')[2];
+      const id = $(this).attr('href').split('/')[2];
       getVitaminList(id);
     })
 
     $(document).on('submit', 'form#new_vitamin_pack', function(event){
       event.preventDefault();
 
-      var values = $(this).serialize();
+      const values = $(this).serialize();
 
       createVitaminPack(values);
 
@@ -149,8 +149,8 @@ $(document).on ("turbolinks:load", function(){
 
     $(document).on('submit', '.edit_vitamin_pack', function(event){
       event.preventDefault();
-      var values = $(this).serialize();
-      var id = $(this).attr('id').split('_')[3];
+      const values = $(this).serialize();
+      const id = $(this).attr('id').split('_')[3];
       updateVitaminPack(id, values);
     });
   });
@@ -161,12 +161,12 @@ $(document).on ("turbolinks:load", function(){
 // AJAX Calls
 ///////////////////////////
 
-var getVitaminPacks = function (){
+const getVitaminPacks = function (){
   $.get('/vitamin_packs.json').done(function(data){
-    var vitaminPacks = buildVitaminPackHeaders();
+    let vitaminPacks = buildVitaminPackHeaders();
     vitaminPacks += '<div class="packs">';
       $.each(data, function(index, value){
-        var vitaminPack = new VitaminPack(data[index]);
+        let vitaminPack = new VitaminPack(data[index]);
         vitaminPacks += vitaminPack.buildVitaminPackRow();
       });
     vitaminPacks += '</div>';
@@ -174,46 +174,47 @@ var getVitaminPacks = function (){
   });
 }
 
-var getVitaminPack = function(id) {
+const getVitaminPack = function(id) {
   $.get('/vitamin_packs/'+ id + '.json').done(function(data){
-    var vitaminPack = new VitaminPack(data);
-    var html = vitaminPack.buildVitaminPack();
+    const vitaminPack = new VitaminPack(data);
+    const html = vitaminPack.buildVitaminPack();
     $('.main').html(html);
   });
 }
 
-var getVitaminList = function(id) {
+const getVitaminList = function(id) {
   $.get('/vitamin_packs/'+ id + '.json').done(function(data){
-    var vitaminPack = new VitaminPack(data);
-    html = vitaminPack.buildVitaminList();
+    const vitaminPack = new VitaminPack(data);
+    const html = vitaminPack.buildVitaminList();
     $('.main').html(html);
   });
 }
 
-var createVitaminPack = function(values) {
+const createVitaminPack = function(values) {
   $.ajax({
     url: '/vitamin_packs',
     type: 'POST',
     data: values,
     dataType: 'JSON',
     success: function(data) {
-      var vitaminPack = new VitaminPack(data);
-      var response = vitaminPack.buildVitaminPack({skipIndexLink: true});
+      const vitaminPack = new VitaminPack(data);
+      const response = vitaminPack.buildVitaminPack({skipIndexLink: true});
       $('.form-main').html(response);
     }
   });
 }
-var updateVitaminPack = function(id, values) {
-  var url = '/vitamin_packs/' + id;
+
+const updateVitaminPack = function(id, values) {
+  const url = '/vitamin_packs/' + id;
   $.ajax({
     url: url,
     type: 'PATCH',
     data: values,
     dataType: 'JSON',
     success: function(data) {
-      var vitaminPack = new VitaminPack(data);
-      var response = vitaminPack.buildVitaminPack({skipIndexLink: true});
-      $('.main').html(response);
+      const vitaminPack = new VitaminPack(data);
+      const response = vitaminPack.buildVitaminPack({skipIndexLink: true});
+      $('.form-main').html(response);
     }
   });
 }
