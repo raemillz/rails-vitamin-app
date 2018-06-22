@@ -57,6 +57,13 @@
       /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
       .show {display:block;}
 
+      /* Load Vitamins Button*/
+      .load-btn {
+        background-color: #fa6e0a;
+        border: none;
+        cursor: pointer;
+      }
+
       </style>
 
     <!-- Bootstrap core CSS -->
@@ -85,11 +92,11 @@
             <div id="myDropdown" class="dropdown-content">
               <sub><%= link_to 'Create New Vitamin', new_vitamin_path %></sub>
               <sub><%= link_to 'Create New Benefit', new_benefit_path %></sub>
-              <sub><%= link_to 'Create New Pack', new_user_vitamin_pack_path(@user) %></sub>
+              <sub><%= link_to 'Create New Pack', new_user_vitamin_pack_path(current_user) %></sub>
               <sub><%= link_to 'View All Vitamins', vitamins_path %></sub>
               <sub><%= link_to 'View All Benefits', benefits_path %></sub>
-              <sub><%= link_to 'View Packs', user_path(@user) %></sub>
-              <sub><%= link_to 'Edit Profile', edit_user_path(@user) %></sub>
+              <sub><%= link_to 'View Packs', user_path(current_user) %></sub>
+              <sub><%= link_to 'Edit Profile', edit_user_path(current_user) %></sub>
             </div>
           </div>
         <% else %>
