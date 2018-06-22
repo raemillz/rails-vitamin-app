@@ -13,6 +13,8 @@
       <% elsif @benefit.id %>
         <h1 class="masthead-heading mb-0"><%= @benefit.name %></h1>
         <h3> <%= link_to "Edit", edit_benefit_path(@benefit) %></h3>
+        <span class: "btn btn-primary"><%= button_to "Delete", @benefit, method: :delete, data: {confirm: "Are you sure?"} %></span>
+
       <% else %>
         <h1 class="masthead-heading mb-0">Create New Benefit</h1>
       <% end %>
