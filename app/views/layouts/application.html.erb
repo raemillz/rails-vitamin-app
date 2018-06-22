@@ -81,7 +81,7 @@
         <% if current_user %>
           <!-- <a class="navbar-brand" <%= link_to "Hello, #{current_user.name}!", user_path(current_user) %> </a> -->
           <div class="dropdown navbar-brand">
-            <a onclick="myFunction()" class="dropbtn navbar-brand"><%="Hello, #{current_user.name}!"%></a>
+            <a onclick="myFunction()" class="dropbtn navbar-brand btn"><%="Hello, #{current_user.name}!"%></a>
             <div id="myDropdown" class="dropdown-content">
               <sub><%= link_to 'Create New Vitamin', new_vitamin_path %></sub>
               <sub><%= link_to 'Create New Benefit', new_benefit_path %></sub>

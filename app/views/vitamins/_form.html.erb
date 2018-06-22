@@ -46,22 +46,3 @@
     <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
-
-<!-- <script type="text/javascript" charset="utf-8">
-  $(function () {
-    $('form').submit(function(event) {
-      //prevent form from submitting the default way
-      event.preventDefault();
-
-      var values = $(this).serialize();
-
-      var posting = $.post('/vitamins', values);
-
-      posting.done(function(data) {
-        var post = data;
-        $("#vitaminName").text(post["name"]);
-        // $("#postBody").text(post["description"]);
-      });
-    });
-  });
-</script> -->
