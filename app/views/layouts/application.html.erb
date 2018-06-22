@@ -14,6 +14,49 @@
          right:0;
          height:30px;
       }
+
+      /* Dropdown Button */
+      .dropbtn {
+          padding: 16px;
+          border: none;
+          cursor: pointer;
+      }
+
+      /* Dropdown button on hover & focus */
+      .dropbtn:hover, .dropbtn:focus {
+          background-color: #fa6e0a;
+      }
+
+      /* The container <div> - needed to position the dropdown content */
+      .dropdown {
+          position: relative;
+          display: inline-block;
+      }
+
+      /* Dropdown Content (Hidden by Default) */
+      .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+      }
+
+      /* Links inside the dropdown */
+      .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+      }
+
+      /* Change color of dropdown links on hover */
+      .dropdown-content a:hover {background-color: #ddd}
+
+      /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+      .show {display:block;}
+
       </style>
 
     <!-- Bootstrap core CSS -->
@@ -36,7 +79,19 @@
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
       <div class="container">
         <% if current_user %>
-          <a class="navbar-brand" <%= link_to "Hello, #{current_user.name}!", user_path(current_user) %> </a>
+          <!-- <a class="navbar-brand" <%= link_to "Hello, #{current_user.name}!", user_path(current_user) %> </a> -->
+          <div class="dropdown navbar-brand">
+            <a onclick="myFunction()" class="dropbtn navbar-brand"><%="Hello, #{current_user.name}!"%></a>
+            <div id="myDropdown" class="dropdown-content">
+              <sub><%= link_to 'Create New Vitamin', new_vitamin_path %></sub>
+              <sub><%= link_to 'Create New Benefit', new_benefit_path %></sub>
+              <sub><%= link_to 'Create New Pack', new_user_vitamin_pack_path(@user) %></sub>
+              <sub><%= link_to 'View All Vitamins', vitamins_path %></sub>
+              <sub><%= link_to 'View All Benefits', benefits_path %></sub>
+              <sub><%= link_to 'View Packs', user_path(@user) %></sub>
+              <sub><%= link_to 'Edit Profile', edit_user_path(@user) %></sub>
+            </div>
+          </div>
         <% else %>
           <a class="navbar-brand" <%= link_to "Start Tracking", root_path %> </a>
         <% end %>
